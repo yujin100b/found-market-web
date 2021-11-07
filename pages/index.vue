@@ -4,12 +4,15 @@
     <navi />
     <carousel />
     <index-market />
+    <img class="main-banner-img" src="/main_banner.png" />
+    <index-farm />
   </div>
 </template>
 
 <script>
+import IndexFarm from '../components/IndexFarm.vue';
 export default {
-  components: { },
+  components: {IndexFarm },
 };
 </script>
 
@@ -21,8 +24,31 @@ export default {
   width: 100%;
   margin: -7px auto;
 }
-.section{
+.main-banner-img{
+  width: 100%;
+  margin: -7px auto;
+}
+.section {
   width: 980px;
-  margin: 0 auto
+  margin: 0 auto;
+  padding: 89px 0
+}
+.section .section-header-img {
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 50px;
+}
+.section .more{
+  display: block;
+  width: 100px;
+  height: 40px;
+  margin: 0 auto;
+  background: #FFD228;
+  font-family: IM_Hyemin-Bold;
+  font-size: 20px;
+  line-height: 24px;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+  border-radius: 25px;
 }
 </style>
