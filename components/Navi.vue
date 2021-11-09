@@ -2,11 +2,11 @@
 <template>
   <div class="navi">
       <div class="link-wrap">
-        <router-link to="/">HOME</router-link>
-        <router-link to="/">ABOUT</router-link>
-        <router-link to="/">FOUND MARKET</router-link>
-        <router-link to="/">FOUND FARM</router-link>
-        <router-link to="/">FOUND LOCAL</router-link>
+        <router-link to="/"><h1>HOME</h1></router-link>
+        <router-link to="/"><h1>ABOUT</h1></router-link>
+        <router-link to="/"><h1>FOUND MARKET</h1></router-link>
+        <router-link to="/"><h1>FOUND FARM</h1></router-link>
+        <router-link to="/"><h1>FOUND LOCAL</h1></router-link>
         <div class="another-link-wrap notosanskr">
           <router-link to="/">LOGIN</router-link>
           <router-link to="/">CART</router-link>
@@ -31,7 +31,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.navi .link-wrap > a {
+.navi .link-wrap > a > h1 {
   font-style: normal;
   font-weight: 900;
   font-family: IM_Hyemin-Bold;

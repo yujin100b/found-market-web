@@ -133,13 +133,14 @@ export default {
 .found-market .product .product-info{
   padding: 0 6px;
 }
-.found-market .product h3 {
+.found-market .product h3.title {
   font-family: IM_Hyemin-Bold;
   font-size: 30px;
   line-height: 37px;
   margin-top: 13px;
   margin-bottom: 9px;
   word-break: keep-all;
+  color: #000;
 }
 .found-market .product p.price {
   font-family: "Noto Sans KR";

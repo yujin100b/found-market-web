@@ -116,6 +116,7 @@ export default {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  color: #000;
 }
 .found-farm .product .sub{
   font-family: "IM_Hyemin-Regular";

@@ -1,18 +1,29 @@
 <template>
   <div class="main">
     <img class="main-header-img" src="/welcometo.png" />
-    <navi />
-    <carousel />
-    <index-market />
+    <Navi />
+    <Carousel />
+    <IndexMarket />
     <img class="main-banner-img" src="/main_banner.png" />
-    <index-farm />
+    <IndexFarm />
+    <IndexLocalNews />
   </div>
 </template>
 
 <script>
+import Navi from '../components/Navi.vue'
+import Carousel from '../components/Carousel.vue'
+import IndexMarket from '../components/IndexMarket.vue';
 import IndexFarm from '../components/IndexFarm.vue';
+import IndexLocalNews from '../components/IndexLocalNews.vue'
 export default {
-  components: {IndexFarm },
+  components: { 
+    Navi,
+    Carousel,
+    IndexMarket,
+    IndexFarm,
+    IndexLocalNews
+  },
 };
 </script>
 
