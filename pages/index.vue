@@ -7,6 +7,7 @@
     <img class="main-banner-img" src="/main_banner.png" />
     <IndexFarm />
     <IndexLocalNews />
+    <Footer />
   </div>
 </template>
 
@@ -16,13 +17,15 @@ import Carousel from '../components/Carousel.vue'
 import IndexMarket from '../components/IndexMarket.vue';
 import IndexFarm from '../components/IndexFarm.vue';
 import IndexLocalNews from '../components/IndexLocalNews.vue'
+import Footer from '../components/Footer.vue'
 export default {
   components: { 
     Navi,
     Carousel,
     IndexMarket,
     IndexFarm,
-    IndexLocalNews
+    IndexLocalNews,
+    Footer
   },
 };
 </script>

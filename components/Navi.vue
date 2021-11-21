@@ -3,13 +3,13 @@
   <div class="navi">
       <div class="link-wrap">
         <router-link to="/"><h1>HOME</h1></router-link>
-        <router-link to="/"><h1>ABOUT</h1></router-link>
-        <router-link to="/"><h1>FOUND MARKET</h1></router-link>
-        <router-link to="/"><h1>FOUND FARM</h1></router-link>
-        <router-link to="/"><h1>FOUND LOCAL</h1></router-link>
+        <router-link to="/about"><h1>ABOUT</h1></router-link>
+        <router-link to="/market"><h1>FOUND MARKET</h1></router-link>
+        <router-link to="/farm"><h1>FOUND FARM</h1></router-link>
+        <router-link to="/local"><h1>FOUND LOCAL</h1></router-link>
         <div class="another-link-wrap notosanskr">
-          <router-link to="/">LOGIN</router-link>
-          <router-link to="/">CART</router-link>
+          <router-link to="/login">LOGIN</router-link>
+          <router-link to="/cart">CART</router-link>
         </div>
       </div>
     </div>
