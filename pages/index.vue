@@ -42,11 +42,6 @@ export default {
   width: 100%;
   margin: -7px auto;
 }
-.section {
-  width: 980px;
-  margin: 0 auto;
-  padding: 89px 0
-}
 .section .section-header-img {
   margin: 0 auto;
   width: 100%;

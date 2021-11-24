@@ -25,3 +25,8 @@ html body {
 .title {
   color: #000;
 }
+.section {
+  width: 980px;
+  margin: 0 auto;
+  padding: 89px 0;
+}
