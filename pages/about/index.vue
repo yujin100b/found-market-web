@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Navi />
+    <Navi fixed/>
     <div class="about-header">
       <p class="left-text">안녕하세요~ 다람쥐 사원이에요!</p>
       <img src="/about-header.png" />
@@ -72,6 +72,9 @@ export default {
 
 
 <style>
+.about{
+  padding-top: 80px;
+}
 .about-header {
   position: relative;
   height: 300px;

@@ -1,6 +1,6 @@
 <template>
   <div class="local">
-    <Navi />
+    <Navi fixed/>
     <div class="section">
       <img class="header" src="/found-local-header.png" />
       <img class="balls" src="/found-local-balls.png" />
@@ -101,6 +101,9 @@ export default {
 
 
 <style>
+.local{
+  padding-top: 80px;
+}
 .local img.header {
   margin-bottom: 137px;
 }

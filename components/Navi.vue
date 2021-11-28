@@ -1,6 +1,6 @@
 <!-- Please remove this file from your project -->
 <template>
-  <div class="navi">
+  <div class="navi" :class="fixed ? 'fixed' :  '' ">
       <div class="link-wrap">
         <router-link to="/"><h1>HOME</h1></router-link>
         <router-link to="/about"><h1>ABOUT</h1></router-link>
@@ -15,6 +15,15 @@
     </div>
 </template>
 
+<script>
+export default {
+  props: {
+    fixed: {
+      type: Boolean
+    }
+  }
+}
+</script>
 
 <style>
 .navi {
@@ -22,6 +31,14 @@
   background: #ffd228;
   border-bottom: #000 solid 2px;
   border-top: #000 solid 2px;
+}
+.navi.fixed {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: block;
+  visibility: visible;
+  z-index: 998;
 }
 .navi .link-wrap {
   width: 980px;

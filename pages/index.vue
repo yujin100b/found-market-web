@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <img class="main-header-img" src="/welcometo.png" />
-    <Navi />
+    <Navi :fixed="fixed" ref="navi" />
     <Carousel />
     <IndexMarket />
     <img class="main-banner-img" src="/main_banner.png" />
@@ -27,6 +27,37 @@ export default {
     IndexLocalNews,
     Footer
   },
+  data() {
+    return {
+      scrollY: 0,
+      timer: null
+    }
+  },
+  computed : {
+    fixed(){
+      return this.scrollY > 282
+    }
+  },
+  beforeMount: function () {
+    // 핸들러 등록하기
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy: function () {
+    // 핸들러 제거하기(컴포넌트 또는 SPA의 경우 절대 잊지 말아 주세요!)
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    // 위화감을 느끼지 않을 200ms 간격으로 scroll 데이터를 변경하는 예
+    handleScroll: function () {
+      if (this.timer === null) {
+        this.timer = setTimeout(function () {
+          this.scrollY = window.scrollY
+          clearTimeout(this.timer)
+          this.timer = null
+        }.bind(this), 200)
+      }
+    }
+  }
 };
 </script>
 
