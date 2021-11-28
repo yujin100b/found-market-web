@@ -1,7 +1,9 @@
 <template>
   <div class="section found-market">
     <img class="section-header-img" src="/market_header.png" />
-    <!-- <p>좋은 원료만을 사용해요.</p> -->
+    <!-- <p>좋은 원료만을 사용해요.</p> 
+    
+    -->
     <div class="products">
       <div class="product" v-for="product in products" :key="product.id">
         <div class="img-wrap">
@@ -12,7 +14,9 @@
           <h3 class="title">{{ product.title }}</h3>
           <p class="price" :class="product.sale_price === 0 ? '' : 'sale'">
             <span v-if="product.sale_price">{{ product.discount_rate }}%</span>
-            {{ product.sale_price === 0 ? product.price : product.sale_price }}원
+            {{
+              product.sale_price === 0 ? product.price : product.sale_price
+            }}원
           </p>
           <p v-if="product.sale_price" class="cancel-price">
             {{ product.price }}원
@@ -22,9 +26,7 @@
         </div>
       </div>
     </div>
-    <button class="more">
-       더 보기 
-    </button>
+    <button class="more">더 보기</button>
   </div>
 </template>
 
@@ -130,7 +132,7 @@ export default {
   width: 140%;
   max-width: unset;
 }
-.found-market .product .product-info{
+.found-market .product .product-info {
   padding: 0 6px;
 }
 .found-market .product h3.title {
@@ -149,11 +151,11 @@ export default {
   line-height: 41px;
   margin-bottom: 9px;
 }
-.found-market .product p.price span{
-  color: #FF0000;
+.found-market .product p.price span {
+  color: #ff0000;
   padding-right: 6px;
 }
-.found-market .product p.cancel-price{
+.found-market .product p.cancel-price {
   font-size: 24px;
   line-height: 33px;
   text-decoration-line: line-through;
@@ -167,5 +169,4 @@ export default {
   line-height: 20px;
   color: rgba(0, 0, 0, 0.8);
 }
-
 </style>
