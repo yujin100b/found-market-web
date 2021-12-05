@@ -11,7 +11,7 @@
           class="product"
           v-for="product in products"
           :key="product.id"
-          @click="goToDetail(product.id)"
+          @click="goToDetail(product)"
         >
           <div class="img-wrap" :class="product.out ? 'out' : ''">
             <img :src="product.img" />
@@ -97,8 +97,12 @@ export default {
     };
   },
   methods: {
-    goToDetail(id) {
-      this.$router.push(`/market/${id}`);
+    goToDetail(product) {
+      if (!product.out) {
+        alert("상품 준비 중 입니다. 조금만 기다려주세요!")
+        return;
+      }
+      this.$router.push(`/market/${product.id}`);
     },
   },
 };
