@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     goToDetail(product) {
-      if (!product.out) {
+      if (product.out) {
         alert("상품 준비 중 입니다. 조금만 기다려주세요!")
         return;
       }

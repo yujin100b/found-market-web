@@ -42,4 +42,12 @@ html body {
   box-sizing: border-box;
   border-radius: 25px;
 }
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 
