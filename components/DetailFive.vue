@@ -57,7 +57,6 @@ export default {};
   padding-bottom: 130px;
 }
 .five .title{
-  position: relative;
   height: 94px;
   border-top: 2px solid #000000;
   border-bottom: 2px solid #000000;
@@ -75,6 +74,7 @@ export default {};
   font-size: 60px;
 }
 .five .title .section{
+  position: relative;
   padding: 0;
 }
 .five .title .section img{
@@ -83,13 +83,13 @@ export default {};
 .five .title .section img.left{
   position: absolute;
   top: 50%;
-  left: 230px;
+  left: 0px;
   transform:translateY(-50%);
 }
 .five .title .section img.right{
   position: absolute;
   top: 50%;
-  right: 230px;
+  right: 0px;
   transform:translateY(-50%);
 }
 .five .body .section{

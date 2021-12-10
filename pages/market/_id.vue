@@ -66,13 +66,15 @@
       </div>
     </div>
     <DetailFive />
+    <Review />
   </div>
 </template>
 
 <script>
 import DetailFive from '../../components/DetailFive.vue';
+import Review from '../../components/Review.vue';
 export default {
-  components: { DetailFive },
+  components: { DetailFive, Review },
   data() {
     return {
       amount: 1,
