@@ -20,7 +20,10 @@ export default {
         rel: 'stylesheet',
         type:"text/css",
         href: 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css'
-      }
+      },
+    ],
+    script : [ // 다음 주소 검색 API 
+      {src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js'}, 
     ]
   },
 
@@ -41,6 +44,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/common.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

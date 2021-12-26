@@ -67,6 +67,7 @@
     </div>
     <DetailFive />
     <Review />
+    <Footer />
   </div>
 </template>
 

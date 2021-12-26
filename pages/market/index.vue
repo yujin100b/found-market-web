@@ -39,7 +39,9 @@
         </div>
       </div>
       <button class="normal-btn">더 보기</button>
+
     </div>
+    <Footer />
   </div>
 </template>
 

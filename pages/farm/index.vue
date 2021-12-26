@@ -24,6 +24,7 @@
     </div>
     <button class="more">더 보기</button>
   </div>
+  <Footer />
 </div>
 </template>
 
@@ -80,7 +81,9 @@ export default {
   font-family: IM_Hyemin-Bold;
   padding: 32px 0;
 } */
-
+.found-farm-list{
+  padding-top: 80px;
+}
 .found-farm-list .search-wrap{
   width: 100%;
   display: flex;
