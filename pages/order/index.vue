@@ -7,12 +7,17 @@
         <div class="inputs">
           <div class="shipping">
             <label>
-              수령인
-              <input />
+              <span>수령인*</span>
+              <input class="full-width" />
             </label>
-            <label>
-              배송지
-              <input type="text" id="sample6_postcode" placeholder="우편번호" />
+            <label class="address">
+              <span>배송지</span>
+              <input
+                type="text"
+                id="sample6_postcode"
+                placeholder="우편번호"
+                class="with-button"
+              />
               <input
                 type="button"
                 @click="addrSearch"
@@ -22,23 +27,25 @@
                 type="text"
                 id="sample6_address"
                 placeholder="주소"
+                class="full-width"
               /><br />
               <input
                 type="text"
                 id="sample6_detailAddress"
                 placeholder="상세주소"
+                class="full-width"
               />
             </label>
-            <label>
-              연락처
+            <label class="phone">
+              <span>연락처</span>
+              <input /> - <input /> - <input />
+            </label>
+            <label class="phone">
+              <span>연락처2</span>
               <input /> - <input /> - <input />
             </label>
             <label>
-              연락처2
-              <input /> - <input /> - <input />
-            </label>
-            <label>
-              배송메모
+              <span>배송메모</span>
               <select v-model="message">
                 <option disabled value="">배송메모를 남겨주세요.</option>
                 <option>배송 전 연락바랍니다.</option>
@@ -50,7 +57,7 @@
           <div class="transaction">
             <h1>결제 방법</h1>
             <p>
-              무통장 입금 계좌번호 : 국민 009901-04-162032 더로컬프로젝트(주)
+              무통장 입금: 국민 009901-04-162032 더로컬프로젝트(주)
             </p>
           </div>
         </div>
@@ -90,12 +97,18 @@
             </div>
           </div>
           <div class="confirm-wrap">
-            <label>
-              <check-box ref="confirmDoc" />
-              <span>상품 및 구매 조건을 확인하였으며, 결제 대행 서비스에 동의합니다.(필수)</span>
-            </label>
-            <p>개인정보 수집/이용 동의 (필수) <span>보기</span></p>
-            <p>개인정보 제3자 제공 동의 (필수) <span>보기</span></p>
+            <check-box ref="confirmDoc" />
+            <div>
+              <p>
+                상품 및 구매 조건을 확인하였으며, 결제 대행 서비스에
+                동의합니다.(필수)
+              </p>
+              <p>개인정보 수집/이용 동의 (필수) <span>보기</span></p>
+              <p>개인정보 제3자 제공 동의 (필수) <span>보기</span></p>
+            </div>
+          </div>
+          <div class="button-wrap">
+            <button @click="goToSuccess()">결제하기</button>
           </div>
         </div>
       </div>
@@ -105,7 +118,7 @@
 </template>
 
 <script>
-import CheckBox from '../../components/CheckBox.vue';
+import CheckBox from "../../components/CheckBox.vue";
 export default {
   components: { CheckBox },
   data() {
@@ -157,6 +170,7 @@ export default {
           quantity: 10,
         },
       ],
+      order: {},
     };
   },
   computed: {
@@ -174,9 +188,9 @@ export default {
     totalPrice() {
       return this.totalOrderPrice + this.shipping;
     },
-    confirmDocs(){
-      return this.$refs.CheckBox.$props
-    }
+    confirmDocs() {
+      return this.$refs.CheckBox.$props;
+    },
   },
   methods: {
     addrSearch() {
@@ -229,16 +243,32 @@ export default {
       }
       return cartitem.product.price;
     },
+    goToSuccess() {
+      /* TODO: 주분 정보 저장하는 코드 넣기 */
+      this.$router.push("/order/success")
+    },
   },
 };
 </script>
 
 <style scoped>
+.order {
+  padding-top: 270px;
+}
+.order h1 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 26px;
+  padding-bottom: 34px;
+}
 .order-body {
   display: flex;
 }
 .order-body > div.inputs {
   width: 55%;
+  padding-right: 85px;
 }
 .order-body > div.summary {
   width: 45%;
@@ -249,6 +279,59 @@ export default {
 }
 .order-body .shipping label {
   display: block;
+  margin-bottom: 40px;
+}
+.order-body .shipping label span {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  width: 70px;
+  display: inline-block;
+}
+.order-body .shipping label input,
+.order-body .shipping label select {
+  background: #ffffff;
+  border: 1px solid #000000;
+  height: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-left: 0;
+  display: inline-block;
+}
+.order-body .shipping label.address input:not(:last-child) {
+  margin-bottom: 5px;
+}
+.order-body .shipping label input.full-width {
+  width: calc(100% - 75px);
+}
+.order-body .shipping label input.with-button {
+  width: calc(100% - 180px);
+}
+.order-body .shipping label input[type="button"] {
+  width: 100px;
+}
+.order-body .shipping label select {
+  height: 40px;
+  width: calc(100% - 75px);
+  appearance: none;
+  background: url("/selectbox-arrow.svg");
+  background-size: 16px 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-x: calc(100% - 10px);
+}
+#sample6_address,
+#sample6_detailAddress {
+  margin-left: 75px;
+}
+.order-body .shipping label.phone input {
+  width: 115px;
+}
+.transaction p{
+  font-family: 'Noto Sans KR';
 }
 .order-body .summary-header {
   display: flex;
@@ -319,36 +402,60 @@ export default {
   font-family: Noto Sans;
   font-weight: bold;
 }
-.order-body .summary-footer{
-  border-top: 2px solid #000; 
+.order-body .summary-footer {
+  border-top: 2px solid #000;
   display: flex;
   justify-content: space-between;
   padding-top: 8px;
+  margin-bottom: 65px;
 }
-.order-body .summary-footer p{
+.order-body .summary-footer p {
   font-family: Noto Sans;
   text-align: center;
-  
 }
-.order-body .summary-footer p.label{
+.order-body .summary-footer p.label {
   margin-bottom: 8px;
   font-weight: 500;
 }
-.order-body .summary-footer p.price{
+.order-body .summary-footer p.price {
   font-weight: bold;
 }
-.confirm-wrap > label span{
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
+.confirm-wrap  {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 42px;
 }
-.confirm-wrap > p{
+.confirm-wrap p {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+.confirm-wrap p:not(:first-child){
+  color: #666666;
+}
+.confirm-wrap p span{
+  text-decoration: underline;
+}
+.button-wrap{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 69px;
+}
+.button-wrap button{
+  width: 279px;
+  height: 50px;
+  background: #FFD228;
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
 }
 </style>

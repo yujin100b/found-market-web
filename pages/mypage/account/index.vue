@@ -1,5 +1,11 @@
 <template>
-  <Navi></Navi>
+  <div class="account">
+    <Navi fixed/>
+    <div class="section">
+
+    </div>
+    <Footer />
+  </div>
 </template>
 
 <script>
