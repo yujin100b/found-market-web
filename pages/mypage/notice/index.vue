@@ -140,8 +140,6 @@ export default {
   font-size: 22px;
   line-height: 30px;
   /* identical to box height */
-
-
   color: #000000;
 }
 
