@@ -8,8 +8,8 @@
           <h2>{{ user }}님</h2>
           <div>
             <router-link to="/mypage/order">주문목록</router-link>
-            <router-link to="/mypage/reivew">리뷰관리</router-link>
-            <router-link to="/mypage/account">회원리뷰수정</router-link>
+            <router-link to="/mypage/review">리뷰관리</router-link>
+            <router-link to="/mypage/account">회원정보 수정</router-link>
             <router-link to="/mypage/notice">공지사항</router-link>
           </div>
         </div>

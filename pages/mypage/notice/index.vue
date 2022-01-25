@@ -1,6 +1,6 @@
 <template>
   <div class="notice">
-    <Navi fixed/>
+    <Navi fixed />
     <div class="section">
       <h1>MY PAGE</h1>
       <div class="wrap">
@@ -8,25 +8,18 @@
           <h2>{{ user }}님</h2>
           <div>
             <router-link to="/mypage/order">주문목록</router-link>
-            <router-link to="/mypage/reivew">리뷰관리</router-link>
-            <router-link to="/mypage/account">회원리뷰수정</router-link>
+            <router-link to="/mypage/review">리뷰관리</router-link>
+            <router-link to="/mypage/account">회원정보 수정</router-link>
             <router-link to="/mypage/notice">공지사항</router-link>
           </div>
         </div>
         <div class="noticelist">
-          <h2>주문 목록</h2>
-          <div class="th">
-            <span>주문 상품</span>
-            <span>주문 상태</span>
-          </div>
-          <div class="tr" @click="goToOrerDetail(orderitem.id)" v-for="orderitem in orderlist" :key="orderitem.id">
-            <div class="info">
-              <p>주문 번호: {{ orderitem.order_num }}</p>
-              <p>{{ orderitem.order_name }}</p>
-              <p>{{ orderitem.total_price }}원</p>
-            </div>
-            <div class="status">{{ orderitem.status }}</div>
-          </div>
+          <h2>공지사항</h2>
+          <p class="accordion-header">공지사항</p>
+          <dl class="accordion" role="presentation">
+            <AccodianItem :content="content" />
+          </dl>
+          
         </div>
       </div>
     </div>
@@ -35,51 +28,56 @@
 </template>
 
 <script>
+import AccodianItem from "../../../components/AccodianItem.vue";
+
 export default {
-  data(){
-    return{
-      user: "이희준",
-      orderlist: [
-        {
-          id : 1,
-          order_num: "OD20210303-190713",
-          total_price: 177000,
-          order_name: "[파운드 티] 진피녹차 16g 외 1건",
-          status: "입금 대기 중",
-        },
-        {
-          id : 2,
-          order_num: "OD20210303-190713",
-          total_price: 177000,
-          order_name: "[파운드 티] 진피녹차 16g 외 1건",
-          status: "입금 대기 중",
-        },
-        {
-          id : 3,
-          order_num: "OD20210303-190713",
-          total_price: 177000,
-          order_name: "[파운드 티] 진피녹차 16g 외 1건",
-          status: "입금 대기 중",
-        }
-      ]
-    }
+  components:{AccodianItem},
+  mounted() {
+    this.groupId = this.$el.id;
   },
-  methods:{
-    goToOrerDetail(id){
-      this.$router.push(`/mypage/order/${id}`)
-    }
-  }
-}
+  data() {
+    return {
+      user: "이희준",
+      multiple: true,
+      groupId: '',
+      content: [
+        {
+          id: 1,
+          title: "이용약관 변경사항 안내",
+          details: "이용약관 변경사항 안내",
+          create_at: "2021.03.01"
+        },
+        {
+          id: 2,
+          title: "이용약관 변경사항 안내",
+          details: "이용약관 변경사항 안내",
+          create_at: "2021.03.01"
+        },
+        {
+          id: 3,
+          title: "이용약관 변경사항 안내",
+          details: "이용약관 변경사항 안내",
+          create_at: "2021.03.01"
+        },
+      ],
+    };
+  },
+  methods: {
+    goToOrerDetail(id) {
+      this.$router.push(`/mypage/order/${id}`);
+    },
+  },
+};
 </script>
 
 <style scoped>
-.notice{
+.notice {
   padding-top: 152px;
 }
-.notice > .section{
+.notice > .section {
   padding-bottom: 267px;
 }
-.notice h1{
+.notice h1 {
   font-family: IM_Hyemin-Bold;
   font-style: normal;
   font-weight: bold;
@@ -88,15 +86,15 @@ export default {
   text-align: center;
   margin-bottom: 74px;
 }
-.notice .wrap{
+.notice .wrap {
   display: flex;
   border-top: 3px solid #000000;
 }
-.wrap .mypage-nav{
+.wrap .mypage-nav {
   padding-left: 36px;
-  width: 205px
+  width: 205px;
 }
-.wrap .mypage-nav h2{
+.wrap .mypage-nav h2 {
   padding: 18px 36px;
   padding-left: 0;
   padding-bottom: 50px;
@@ -106,7 +104,7 @@ export default {
   font-size: 36px;
   line-height: 49px;
 }
-.wrap .mypage-nav a{
+.wrap .mypage-nav a {
   font-family: Noto Sans KR;
   font-style: normal;
   font-size: 22px;
@@ -116,84 +114,37 @@ export default {
   color: #000;
 }
 
-.wrap .mypage-nav a.nuxt-link-active{
+.wrap .mypage-nav a.nuxt-link-active {
   font-weight: bold;
 }
 .wrap .noticelist {
   width: calc(100% - 205px);
 }
-.wrap .noticelist h2{
+.wrap .noticelist h2 {
   padding: 18px 36px;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
   line-height: 52px;
-  background: #FFD228;
+  background: #ffd228;
   border-bottom: 3px solid #000;
 }
-.wrap .noticelist .th{
-  display: flex;
-  justify-content: space-between;
-  padding:9px 0;
-  border-bottom: 3px solid #000;;
-}
-.wrap .noticelist .tr{
-  display: flex;
-  justify-content: space-between;
-}
-.wrap .noticelist .th span{
-  display: block;
-  text-align: center;
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 32px;
-}
-.wrap .noticelist .tr{
-  border-bottom: 1px solid #000;
-  cursor: pointer;
-}
-.wrap .noticelist .tr:last-child{
-  border-bottom: 0;
-}
-.wrap .noticelist .th span:first-child,
-.wrap .noticelist .tr div.info{
-  width: 345px;
-}
-.wrap .noticelist .tr div.info{
-  padding-top: 18px;
-  padding-left:24px;
-}
-.wrap .noticelist .tr div.info p{
+.accordion-header{
+  padding-top: 39px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #000000;
   font-family: Noto Sans;
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
   line-height: 30px;
-  margin-bottom: 13px;
+  /* identical to box height */
+
+
+  color: #000000;
 }
-.wrap .noticelist .tr div.info p:nth-child(2){
-  font-family: IM_Hyemin-Bold;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 27px;
-}
-.wrap .noticelist .th span:last-child,
-.wrap .noticelist .tr div.status{
-  width: 229px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.wrap .noticelist .tr div.status{
-  font-family: Noto Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 30px;
-}
+
+
+
 </style>

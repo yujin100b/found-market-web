@@ -1,6 +1,6 @@
 <template>
   <div class="review section">
-      <div class="reivew-header">
+      <div class="review-header">
           <p class="title">Review</p>
           <router-link to="/">리뷰쓰기</router-link>
       </div>
@@ -16,17 +16,17 @@ export default {
 </script>
 
 <style>
-.reivew-header{
+.review-header{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
-.reivew-header .title{
+.review-header .title{
   font-size: 60px;
   line-height: 73px;
   margin-bottom: 0;
 }
-.reivew-header a{
+.review-header a{
     font-family: "Noto Sans KR";
     font-weight: 600;
     font-size: 20px;

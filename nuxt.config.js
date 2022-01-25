@@ -23,7 +23,7 @@ export default {
       },
     ],
     script : [ // 다음 주소 검색 API 
-      {src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js'}, 
+      {src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js'},
     ]
   },
 
