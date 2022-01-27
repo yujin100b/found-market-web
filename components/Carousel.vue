@@ -56,29 +56,27 @@ export default {
       direction: 1,
       transitionName: "fade",
       show: false,
-      slides: [
-        {
-          styleObject: {
+      slides: [{
+          style_obejct: {
             backgroundImage: "url(/slide1.jpg)",
           },
           title: "메이드 인 제주 진피녹차 출시",
           subtitle: "한모금으로 제주 여행하기",
         },
         {
-          styleObject: {
+          style_obejct: {
             backgroundImage: "url(/slide2.jpg)",
           },
           title: "메이드 인 제주 진피녹차 출시",
           subtitle: "한모금으로 제주 여행하기",
         },
         {
-          styleObject: {
+          style_obejct: {
             backgroundImage: "url(/slide3.jpg)",
           },
           title: "메이드 인 제주 진피녹차 출시",
           subtitle: "한모금으로 제주 여행하기",
-        },
-      ],
+        },],
     };
   },
   methods: {
@@ -90,6 +88,21 @@ export default {
       let len = this.slides.length;
       this.current = (this.current + (dir % len) + len) % len;
     },
+    getSlide(){
+      this.$store.dispatch('get_slide').then(res => {
+        this.slides = res.data.map(el => {
+          return {
+            ...el,
+            styleObject: {
+                backgroundImage: `url(${el.background})`,
+          }
+        }
+      })
+      })
+    }
+  },
+  created(){
+    this.getSlide()
   },
   mounted() {
     this.show = true;
