@@ -1,6 +1,7 @@
 <template>
   <div class="section found-farm">
-    <img class="section-header-img" src="/farm_header.png" />
+    <img class="section-header-img pc" src="/farm_header.png" />
+    <img class="section-header-img mobile" src="/mobile_farm_header.png" />
     <!-- <p>좋은 원료만을 사용해요.</p> -->
     <div class="products">
       <div class="product" v-for="product in products" :key="product.id">
@@ -150,5 +151,38 @@ export default {
   border: 3px solid #000000;
   box-sizing: border-box;
   border-radius: 25px;
+}
+
+@media(max-width: 980px){
+  .found-farm.section{
+    padding-top: 0;
+  }
+  .found-farm .product .img-wrap {
+    width: 274px;
+    height: 274px;
+  }
+  .found-farm .products{
+    grid-template-columns: 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 80px;
+    margin-top: 50px;
+    margin-bottom: 66px;
+  }
+  .found-farm .product{
+    padding: 21px;
+  }
+  .found-farm .product > h3.title{
+    font-size: 14px;
+    
+  }
+  .found-farm .product .sub{
+    margin: 11px auto;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .found-farm .product p.desc{
+    font-size: 14px;
+  line-height: 26px;
+  }
 }
 </style>

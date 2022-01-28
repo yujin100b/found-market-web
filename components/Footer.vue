@@ -3,25 +3,18 @@
     <div class="section">
       <div class="info">
         <img src="/footer_logo.svg" />
+        <p>(주) 더로컬프로젝트 | 대표:이희준</p>
         <p>
-          (주) 더로컬프로젝트 | 대표:이희준 
+          사업자등록번호: 408-87-02014 | 통신판매신고번호:제
+          2020-제주삼도이-0009호
         </p>
-        <p>
-          사업자등록번호: 408-87-02014 | 통신판매신고번호:제 2020-제주삼도이-0009호 
-        </p>
-        <p>
-          제주특별 자치도 제주시 관덕로7길39, 1층 
-        </p>
-        <p class="policy">
-          <a>이용약관</a> | <a>개인정보처리방침</a> 
-        </p>
-        <p>
-          ⓒ THE LOCAL PROJECT Co.,Ltd. 2018-2020.
-        </p>
+        <p>제주특별 자치도 제주시 관덕로7길39, 1층</p>
+        <p class="policy"><a>이용약관</a> | <a>개인정보처리방침</a></p>
+        <p>ⓒ THE LOCAL PROJECT Co.,Ltd. 2018-2020.</p>
       </div>
       <div class="sns">
-          <img src="/insta.png" @click="instagram">
-          <img src="/meta.png" @click="meta">
+        <img src="/insta.png" @click="instagram" />
+        <img src="/meta.png" @click="meta" />
       </div>
     </div>
   </div>
@@ -29,14 +22,10 @@
 
 <script>
 export default {
-    methods:{
-        instagram(){
-
-        },
-        meta(){
-
-        }
-    }
+  methods: {
+    instagram() {},
+    meta() {},
+  },
 };
 </script>
 
@@ -53,17 +42,36 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.footer .info img{
-    margin-bottom: 26px;
+.footer .info img {
+  margin-bottom: 26px;
 }
-.footer .info p.policy{
-    margin-bottom: 1em;
+.footer .info p.policy {
+  margin-bottom: 1em;
 }
-.footer .info a{
-    color: #000;
-    font-weight: bold;
+.footer .info a {
+  color: #000;
+  font-weight: bold;
 }
-.footer .sns img:last-child{
-    margin-left: 13px;
+.footer .sns img:last-child {
+  margin-left: 13px;
+}
+
+@media (max-width: 980px) {
+  .footer .info {
+    width: 245px;
+  }
+  .footer .info img {
+    width: 186px;
+  }
+  .footer .info p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .footer .sns img {
+    width: 28px;
+  }
+  .footer .sns img:last-child {
+    margin-left: 8px;
+  }
 }
 </style>

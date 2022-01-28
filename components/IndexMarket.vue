@@ -1,6 +1,7 @@
 <template>
   <div class="section found-market">
-    <img class="section-header-img" src="/market_header.png" />
+    <img class="section-header-img pc" src="/market_header.png" />
+     <img class="section-header-img mobile" src="/mobile_marke_header.png" />
     <!-- <p>좋은 원료만을 사용해요.</p> 
     
     -->
@@ -90,6 +91,9 @@ export default {
   font-family: IM_Hyemin-Bold;
   padding: 32px 0;
 } */
+.section.found-market{
+  padding-top: 0;
+}
 .found-market .products {
   display: grid;
   grid-column-gap: 40px;
@@ -169,4 +173,44 @@ export default {
   line-height: 20px;
   color: rgba(0, 0, 0, 0.8);
 }
+
+@media (max-width:980px) {
+  .found-market .products{
+    grid-column-gap: 15px;
+    grid-row-gap: 33px;
+    margin-top: 50px;
+    margin-bottom: 66px;
+  }
+  .found-market .product .img-wrap{
+    width: 150px;
+    height: 150px;
+  }
+  .new-mark {
+    width: 30px;
+    height: 30px;
+    left: 8px;
+    top: 8px;
+    font-size: 10px;
+    line-height: 20px;
+  }
+  .found-market .product h3.title {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .found-market .product p.price{
+    font-size: 14px;
+    line-height: 19px;
+    margin-bottom: 0px;
+    display: inline-block;
+  }
+  .found-market .product p.cancel-price {
+    font-size: 10px;
+    line-height: 14px;
+    display: inline-block;
+  }
+  .found-market .product p.desc{
+    display: none;
+  }
+}
+
 </style>

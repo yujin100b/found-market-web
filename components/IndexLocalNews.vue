@@ -194,4 +194,56 @@ export default {
   color: rgba(0, 0, 0, 0.7);
   padding-right: 8px;
 }
+@media (max-width: 980px) {
+  .local-news-section{
+    flex-direction: column;
+  }
+  .local-news div.section{
+    padding-top:10px;
+    padding-bottom: 32px;
+  }
+  .local-news h2{
+    font-size: 8px;
+    margin-bottom: 10px;
+  }
+  .local-news-header{
+    font-size: 22px;
+    padding: 12px 0;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    border-radius: 1px;
+    margin-bottom: 11px;
+  }
+  .local-news-section:last-child{
+    padding-top: 11px;
+  }
+  .local-news-section{
+    padding-bottom: 11px;
+  }
+  .local-news-section .local-news-item:first-child{
+    border-bottom: 1px solid #000000;
+    padding-bottom: 11px;
+  }
+  .local-news-section .local-news-item:last-child {
+    padding-top: 11px;
+}
+  .local-news-item .img-wrap {
+    width: 100px;
+    height: 100px;
+  }
+  .local-news-item .text-wrap{
+    width: 208px;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-top:0;
+  }
+  .local-news-item .text-wrap .title {
+    font-size: 10px;
+    line-height: 14px;
+  }
+  .local-news-item .text-wrap .short{
+    font-size: 10px;
+  line-height: 14px;
+  } 
+}
 </style>

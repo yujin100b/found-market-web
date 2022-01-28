@@ -91,4 +91,17 @@ export default {
   box-sizing: border-box;
   border-radius: 25px;
 }
+
+@media (max-width: 980px){
+  .main-header-img{
+    display: none;
+  }
+  .section .more{
+    width: 60px;
+    height: 20px;
+    font-size: 10px;
+    line-height: 12px;
+    border: 2px solid #000000;
+  }
+}
 </style>

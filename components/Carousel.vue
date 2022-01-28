@@ -13,7 +13,7 @@
         </div>
       </div>
     </transition-group>
-    <div class="btn btn-prev" aria-label="Previous slide" @click="slide(-1)">
+    <div class="btn btn-prev pc" aria-label="Previous slide" @click="slide(-1)">
       <svg
         width="18"
         height="32"
@@ -29,7 +29,7 @@
         />
       </svg>
     </div>
-    <div class="btn btn-next" aria-label="Next slide" @click="slide(1)">
+    <div class="btn btn-next pc" aria-label="Next slide" @click="slide(1)">
       <svg
         width="18"
         height="32"
@@ -44,6 +44,13 @@
           stroke-linecap="round"
         />
       </svg>
+    </div>
+    <div class="btn mobile">
+      <span
+        v-for="(slide, index) in slides"
+        :key="index"
+        @click="slidebtn(index-1)"
+      ></span>
     </div>
   </div>
 </template>
@@ -89,6 +96,10 @@ export default {
         : (this.transitionName = "slide-prev");
       let len = this.slides.length;
       this.current = (this.current + (dir % len) + len) % len;
+    },
+    slidebtn(index) {
+      let dir = this.current <= index ? -1 : 1 
+      this.slide(dir)
     },
     getSlide() {
       this.$store.dispatch("get_slide").then((res) => {
@@ -216,5 +227,60 @@ export default {
 
 .btn:hover {
   transform: scale(1.1);
+}
+
+@media (max-width: 980px) {
+  #slider {
+    width: 375px;
+    height: 375px;
+  }
+  .slide .slide-text-wrap {
+    width:100%;
+    padding: 29px;
+  }
+  .slide {
+    width: 100%;
+    height: 375px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top:40px;
+  }
+  
+  .btn {
+    z-index: 10;
+    cursor: pointer;
+    color: #fff;
+    background: none;
+    position: absolute;
+    width: 44px;
+    height: 10px;
+    top: calc(100% - 30px);
+    left: calc(50% - 22px);
+    transition: transform 0.3s ease-in-out;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+   .btn span{
+      background: #000;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+   }
+  .slide-text-wrap h1 {
+    width: 100%;
+    font-size: 32px;
+    line-height: 49px;
+  }
+  .slide-text-wrap p {
+    width: 100%;
+    font-size: 14px;
+    line-height: 19px;
+  }
 }
 </style>
