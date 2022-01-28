@@ -56,7 +56,8 @@ export default {
       direction: 1,
       transitionName: "fade",
       show: false,
-      slides: [{
+      slides: [
+        {
           style_obejct: {
             backgroundImage: "url(/slide1.jpg)",
           },
@@ -76,7 +77,8 @@ export default {
           },
           title: "메이드 인 제주 진피녹차 출시",
           subtitle: "한모금으로 제주 여행하기",
-        },],
+        },
+      ],
     };
   },
   methods: {
@@ -88,21 +90,23 @@ export default {
       let len = this.slides.length;
       this.current = (this.current + (dir % len) + len) % len;
     },
-    getSlide(){
-      this.$store.dispatch('get_slide').then(res => {
-        this.slides = res.data.map(el => {
-          return {
-            ...el,
-            styleObject: {
+    getSlide() {
+      this.$store.dispatch("get_slide").then((res) => {
+        if (res.data.length) {
+          this.slides = res.data.map((el) => {
+            return {
+              ...el,
+              styleObject: {
                 backgroundImage: `url(${el.background})`,
-          }
+              },
+            };
+          });
         }
-      })
-      })
-    }
+      });
+    },
   },
-  created(){
-    this.getSlide()
+  created() {
+    this.getSlide();
   },
   mounted() {
     this.show = true;

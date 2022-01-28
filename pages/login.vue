@@ -4,8 +4,8 @@
     <div class="section">
       <h1>로그인</h1>
       <input v-model="email" placeholder="이메일을 입력하세요"/>
-      <input v-models="password" placeholder="비밀번호를 입력하세요"/>
-      <button class="login-btn">로그인</button>
+      <input v-model="password" type="password" placeholder="비밀번호를 입력하세요"/>
+      <button class="login-btn" @click="login">로그인</button>
       <div class="links">
         <span>비밀번호 찾기</span>
         <span @click="goToRegist">회원가입</span>
@@ -25,9 +25,26 @@ export default {
       password: ''
     }
   },
+  computed : {
+    payload(){
+      return {
+        email: this.email,
+        password: this.password
+      }
+    }
+  },
   methods:{
     goToRegist() {
       this.$router.push('/regist')
+    },
+    login(){
+      this.$store.dispatch('login', this.payload).then(
+        (res) => {
+          if (res.status == 200){
+            this.$router.push('/')
+          }
+        }
+      )
     }
   }
 }

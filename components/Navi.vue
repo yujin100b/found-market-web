@@ -8,7 +8,8 @@
         <router-link to="/farm"><h1>FOUND FARM</h1></router-link>
         <router-link to="/local"><h1>FOUND LOCAL</h1></router-link>
         <div class="another-link-wrap notosanskr">
-          <router-link to="/login">LOGIN</router-link>
+          <router-link v-if="token" to="/mypage/order">MYPAGE</router-link>
+          <router-link v-else to="/login">LOGIN</router-link>
           <router-link to="/cart">CART</router-link>
         </div>
       </div>
@@ -21,7 +22,14 @@ export default {
     fixed: {
       type: Boolean
     }
+  },
+  data(){
+    return {
+      token : this.$store.state.token
+    }
   }
+  
+
 }
 </script>
 
