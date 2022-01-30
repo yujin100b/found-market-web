@@ -102,10 +102,34 @@ export const actions = {
         });
     });
   },
+  async get_market_one({ commit }, id) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get(`/market/${id}/`)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   async get_farm({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
         .get("/farm/")
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async get_farm_one({ commit }, id) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get(`/farm/${id}/`)
         .then((res) => {
           resolve(res);
         })

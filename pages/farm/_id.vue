@@ -7,7 +7,7 @@
       </p>
       <div class="shorts">
         <div class="img-wrap">
-          <img :src="product.img" />
+          <img :src="product.thumbnail" />
         </div>
         <div class="func-wrap">
           <div class="title-wrap">
@@ -24,9 +24,12 @@
             <p v-if="product.sale_price" class="cancel-price">
               {{ product.price }}원
             </p>
+            <div class="share-wrap mobile">
+              <img class="share" src="/share.svg" />
+            </div>
           </div>
           <div class="button-wrap">
-            <div class="share-wrap">
+            <div class="share-wrap pc">
               <img class="share" src="/share.svg">
             </div>
             <div class="cart-button">
@@ -37,19 +40,36 @@
             </div>
             <div class="pay-button">
               <button>
-                <svg
-                  width="26"
-                  height="24"
-                  viewBox="0 0 26 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect width="26" height="24" fill="white" />
-                  <path
-                    d="M15.4968 12.4936L10.2803 5H6V19H10.5032V11.5064L15.6752 19H20V5H15.4968V12.4936Z"
-                    fill="#75CF48"
-                  />
-                </svg>
+                <span class="pc">
+                  <svg
+                    width="26"
+                    height="24"
+                    viewBox="0 0 26 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="26" height="24" fill="white" />
+                    <path
+                      d="M15.4968 12.4936L10.2803 5H6V19H10.5032V11.5064L15.6752 19H20V5H15.4968V12.4936Z"
+                      fill="#75CF48"
+                    />
+                  </svg>
+                </span>
+                <span class="mobile">
+                  <svg
+                    width="14"
+                    height="13"
+                    viewBox="0 0 14 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="14" height="13" fill="white" />
+                    <path
+                      d="M8.07006 7.16202L5.8344 3H4V10.7758H5.92994V6.61373L8.1465 10.7758H10V3H8.07006V7.16202Z"
+                      fill="#75CF48"
+                    />
+                  </svg>
+                </span>
                 <span>네이버 페이 구매</span>
               </button>
             </div>
@@ -68,6 +88,10 @@
     <DetailFive />
     <Review />
     <Footer />
+    <div class="nav-btn pc">
+        <div>상품설명</div>
+        <div class="yellow">후기</div>
+    </div>
   </div>
 </template>
 
@@ -81,7 +105,7 @@ export default {
       amount: 1,
       product: {
         id: 1,
-        img: "/slide1.jpg",
+        thumbnail: "/slide1.jpg",
         title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
         desc: "제주산 100% 고품질 찻잎만 담았어요",
         price: 10000,
@@ -117,8 +141,16 @@ export default {
         return
       }
       this.amount = this.amount-1
+    },
+    get_farm_one(){
+      this.$store.dispatch('get_farm_one', this.id).then(res =>{
+        this.product = res.data
+      })
     }
   },
+  created(){
+    this.get_farm_one()
+  }
 };
 </script>
 
@@ -139,7 +171,8 @@ export default {
 }
 .detail .shorts {
   display: flex;
-  margin-bottom: 152px;
+  padding-bottom: 152px;
+  border-bottom: 2px solid #000;
 }
 .detail .shorts .img-wrap {
   position: relative;
@@ -280,7 +313,6 @@ export default {
   top: -10%;
 }
 .detail .contents {
-  border-top: 2px solid #000;
   padding-top: 72px;
   padding-bottom: 266px;
   min-height: 800px;
@@ -298,5 +330,114 @@ export default {
 }
 .detail .info-item > p:first-of-type {
   font-weight: bold;
+}
+.nav-btn{
+  position: fixed;
+  top: 30%;
+  right: 0
+}
+.nav-btn div{
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  padding: 9px;
+  width: 50px;
+  height: 50px;
+  font-size: 14px;
+  line-height: 13px;
+  background: #FFFFFF;
+  border: 2px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+.nav-btn div.yellow{
+  border: 2px solid #000000;
+  border-top: 1px solid #000000;
+  display: flex;
+  align-items: center;
+  background: #FFD228;
+}
+@media (max-width: 980px) {
+  .detail-body {
+    padding-top: 0;
+    padding-bottom: 170px;
+    width: 100%;
+  }
+  .detail .title {
+    padding: 20px 0;
+    font-size: 20px;
+    line-height: 29px;
+    margin-bottom: 0;
+  }
+  .detail .shorts p.desc {
+    display: none;
+  }
+  .breadcrum {
+    display: none;
+  }
+  .detail .shorts {
+    flex-direction: column;
+    justify-content: center;
+    width:315px;
+    margin: 0 auto;
+    padding-bottom: 65px;
+  }
+  .detail .shorts .img-wrap {
+    min-width: unset;
+    width: 315px;
+    height: 315px;
+  }
+  .detail .shorts .title-wrap {
+    margin-bottom: 16px;
+  }
+  .detail .shorts .func-wrap {
+    padding-left: 0px;
+  }
+  .detail .shorts p.price {
+    display: inline;
+    font-size: 20px;
+    line-height: 27px;
+    padding-right: 6px;
+  }
+  .detail .shorts p.cancel-price {
+    display: inline;
+    font-size: 20px;
+    line-height: 27px;
+  }
+  .detail .shorts .share-wrap {
+    margin-bottom: 0;
+    display: inline-flex;
+    margin-left: 65px;
+  }
+  .detail .shorts .share-wrap img {
+    width: 23.32px;
+    height: 21.43px;
+  }
+  .detail .shorts .cart-button button:not(.addcart) {
+    max-width: 30px;
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 10px;
+  }
+  .detail .shorts .cart-button input {
+    width: 69px;
+    height: 30px;
+    border-radius: 10px;
+  }
+  .detail .shorts .cart-button .addcart {
+    font-size: 12px;
+    line-height: 16px;
+    width: 171px;
+    padding: 0;
+    border-radius: 10px;
+  }
+  .detail .shorts .pay-button button {
+    padding: 12px;
+  }
+  .detail .shorts .pay-button button span {
+    font-size: 12px;
+    line-height: 0;
+  }
 }
 </style>

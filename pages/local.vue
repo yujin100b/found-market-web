@@ -2,7 +2,8 @@
   <div class="local">
     <Navi fixed/>
     <div class="section">
-      <img class="header" src="/found-local-header.png" />
+      <img class="header pc" src="/found-local-header.png" />
+      <img class="header mobile" src="/mobile-local-header.png" />
       <img class="balls" src="/found-local-balls.png" />
       <h1>
         전국 8도 로컬 크리에이터와 <br />
@@ -162,5 +163,35 @@ export default {
 }
 .local .send-form-btn {
   margin-bottom: 163px;
+}
+@media (max-width:980px) {
+  .local img.header {
+    width: 100%;
+    margin-bottom: 63px;
+  }
+  .local .section h1{
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .local p.header-text{
+    font-size: 14px;
+    line-height: 26px;
+  }
+  .local .form-header {
+    margin-bottom: 39px;
+  }
+  .local .form .question{
+    font-size: 14px;
+    line-height: 17px;
+  } 
+  .local .closing-text{
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .normal-btn{
+    font-size: 10px;
+    line-height: 12px;
+    padding: 4px 14px;
+  }
 }
 </style>

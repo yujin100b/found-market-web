@@ -69,4 +69,7 @@ input::-webkit-inner-spin-button {
     margin: 0 auto;
     padding: 42px 0;
   }
+  button{
+    color: #000;
+  }
 }

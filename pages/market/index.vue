@@ -2,7 +2,8 @@
   <div class="found-market-list">
     <Navi fixed />
     <div class="section found-market">
-      <img class="section-header-img" src="/market_header.png" />
+      <img class="section-header-img pc" src="/market_header.png" />
+      <img class="section-header-img mobile" src="/mobile_marke_header.png" />
       <div class="search-wrap">
         <input class="search" :v-model="search" />
       </div>
@@ -239,5 +240,57 @@ export default {
   font-size: 18px;
   line-height: 1.39;
   color: rgba(0, 0, 0, 0.8);
+}
+@media (max-width:980px) {
+  .section-header-img {
+    width: 100%;
+  }
+  .found-market-list .found-market .products {
+    grid-column-gap: 15px;
+    grid-row-gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .found-market-list .search-wrap {
+    justify-content: center;
+  }
+  .found-market-list .found-market .product .img-wrap {
+    width: 150px;
+    height: 150px;
+  }
+  .found-market-list .search{
+    width: 226px;
+    height: 34px;
+    background-size: 15.59px;
+  }
+  .found-market-list .found-market .product h3.title {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .found-market-list .found-market .product p.price{
+    display: inline-block;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  .found-market-list .found-market .product p.cancel-price{
+    font-size: 10px;
+    line-height: 14px;
+    display: inline-block;
+    padding-left: 6px;
+  }
+  .found-market-list .found-market .product .img-wrap.out div.outofstock{
+    font-size: 22px;
+    line-height: 27px;
+  }
+  .found-market-list .new-mark{
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+    line-height: 20px;
+  }
+  .normal-btn{
+    font-size: 10px;
+    line-height: 12px;
+    padding: 4px 14px;
+  }
 }
 </style>

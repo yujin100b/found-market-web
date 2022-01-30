@@ -2,7 +2,8 @@
 <div class="found-farm-list">
   <Navi fixed/>
   <div class="section found-farm">
-    <img class="section-header-img" src="/farm_header.png" />
+    <img class="section-header-img pc" src="/farm_header.png" />
+    <img class="section-header-img mobile" src="/mobile_farm_header.png" />
     <div class="search-wrap">
       <input class="search" :v-model="search" />
     </div>
@@ -206,5 +207,30 @@ export default {
   border: 3px solid #000000;
   box-sizing: border-box;
   border-radius: 25px;
+}
+@media (max-width: 980px){
+  .found-farm-list .search-wrap{
+    justify-content: center;
+  }
+  .found-farm-list .search {
+      width: 226px;
+      height: 34px;
+      background-size: 15.59px;
+  }
+  .found-farm-list .found-farm .products{
+    grid-row-gap: 80px;
+    grid-template-columns: 1fr;
+    margin-bottom: 16px;
+  }
+  .found-farm-list .found-farm .product .img-wrap {
+    width: 274px;
+    height: 274px;
+}
+.found-farm-list .found-farm .more{
+    width: 60px;
+    height: 20px;
+    font-size: 10px;
+    line-height: 12px;
+  }
 }
 </style>

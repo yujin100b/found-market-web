@@ -65,21 +65,21 @@ export default {
       show: false,
       slides: [
         {
-          style_obejct: {
+          styleObject: {
             backgroundImage: "url(/slide1.jpg)",
           },
           title: "메이드 인 제주 진피녹차 출시",
           subtitle: "한모금으로 제주 여행하기",
         },
         {
-          style_obejct: {
+          styleObject: {
             backgroundImage: "url(/slide2.jpg)",
           },
           title: "메이드 인 제주 진피녹차 출시",
           subtitle: "한모금으로 제주 여행하기",
         },
         {
-          style_obejct: {
+          styleObject: {
             backgroundImage: "url(/slide3.jpg)",
           },
           title: "메이드 인 제주 진피녹차 출시",
@@ -164,6 +164,7 @@ export default {
   width: 100%;
   height: 450px;
   position: relative;
+
 }
 
 .slide {
@@ -233,6 +234,7 @@ export default {
   #slider {
     width: 375px;
     height: 375px;
+    margin: 0 auto;
   }
   .slide .slide-text-wrap {
     width:100%;

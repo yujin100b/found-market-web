@@ -2,9 +2,10 @@
   <div class="about">
     <Navi fixed/>
     <div class="about-header">
-      <p class="left-text">안녕하세요~ 다람쥐 사원이에요!</p>
-      <img src="/about-header.png" />
-      <p class="right-text">전국 8도 로컬브랜드를 찾습니다!</p>
+      <!-- <p class="left-text">안녕하세요~ 다람쥐 사원이에요!</p> -->
+      <img class="pc" src="/about-header.png" />
+      <img class="mobile" src="/mobile-about-header.png" />
+      <!-- <p class="right-text">전국 8도 로컬브랜드를 찾습니다!</p> -->
     </div>
     <div class="about-body">
       <div class="section">
@@ -24,7 +25,8 @@
           </p>
         </div>
         <div class="about-row">
-          <img width="310" src="/about-lee.png" />
+          <img class="pc" width="310" src="/about-lee.png" />
+          <img class="mobile" src="/mobile-about-lee.png" />
           <p>
             더로컬프로젝트는 전국 8도 로컬 브랜드 큐레이션 플랫폼 FOUND MARKET을
             운영하는 로컬 농식품 스타트업입니다. 로컬의 자원을 발굴하고
@@ -40,7 +42,7 @@
       <div class="section">
         <div class="about-contact-header">
           <p>FOUND MARKET 관련 문의사항은</p>
-          <p>아래 이메일로 연락주세요!</p>
+          <p>다람쥐 사 이메일로 연락주세요!</p>
         </div>
         <div class="about-contact-namecard">
           <img src="/about-contact.png" />
@@ -178,5 +180,40 @@ export default {
   font-weight: bold;
   width: 70px;
   display: inline-block;
+}
+@media (max-width:980px){
+  .about-header {
+    height: 200px;
+  }
+  .about-body {
+    padding-top: 55px;
+  }
+  .about-row {
+    flex-direction: column;
+  }
+  .about-row img{
+    margin-bottom: 17px;
+  }
+  .about-row img.mobile{
+    margin-bottom: 67px;
+  }
+  .about-row p {
+    font-size: 14px;
+    line-height: 26px;
+  }
+  .about-contact-header p{
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .info .info-wrap {
+    font-size: 12px;
+    line-height: 22px;
+}
+.about-contact-namecard h1 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 12px;
+    line-height: 21px;
+}
 }
 </style>
