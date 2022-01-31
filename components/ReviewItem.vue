@@ -32,7 +32,7 @@
                   <span>+</span>
                   <input multiple type="file" @change="onFileChange" />
                 </label>
-                <div v-if="images">
+                <div class="img-w-btn-wrap" v-if="images">
                   <div class="img-w-btn" v-for="(image, index) in images" :key="index">
                     <div class="img-wrap">
                       <img :src="image" />
@@ -123,7 +123,9 @@ export default {
     max-height: 0;
   }
 }
-
+.img-w-btn-wrap{
+  display: flex;
+}
 .img-wrap {
   position: relative;
   min-width: 100px;
@@ -134,6 +136,7 @@ export default {
   align-items: center;
   justify-content: center;
   border: 2px solid #000;
+  margin-right: 15px;
 }
 .img-wrap img {
   display: block;
@@ -147,14 +150,15 @@ export default {
 
 .img-w-btn button{
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -5px;
+  right: 5px;
   width: 20px;
   height: 20px;
   border: 0;
   border-radius: 10px;
   background: black;
   color: #fff;
+  padding: 0 !important
 }
 
 .lb_accordeon .lb_item {
@@ -237,17 +241,20 @@ export default {
 }
 
 .img-input-form {
-  display: flex;
+      width: 100%;
+    display: flex;
+    overflow: scroll;
 }
 
 .img-input-form label {
     width: 100px;
     height: 100px;
     border: 2px solid #000;
-    margin-right: 5px;
+    margin-right: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 100px;
 }
 .img-input-form label span{
   font-family: Noto Sans KR;
@@ -314,5 +321,42 @@ export default {
 #lb_accordeon li {
   padding: 0;
   margin: 0;
+}
+@media (max-width: 980px) {
+  .lb_accordeon .lb_item__hl{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+  }
+  .img-wrap{
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+  }
+  .list-item-wrap{
+    width: 100%;
+  }
+  .list-item-wrap .text-wrap{
+    padding-left: 0;
+  }
+  .list-item-wrap .item-title {
+    width: unset;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .list-item-wrap .text-wrap p:last-child{
+    font-size: 12px;
+  }
+  .img-input-form {
+        padding-top: 15px;
+  }
+  .img-input-form label {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+}
+.lb_accordeon .lb_item .lb_item-copy-ct {
+    padding: 15px 0;
+}
 }
 </style>

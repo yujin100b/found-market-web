@@ -24,6 +24,7 @@
           <router-link to="/farm"><h1>FOUND FARM</h1></router-link>
           <router-link to="/local"><h1>FOUND LOCAL</h1></router-link>
           <router-link to="/cart"><h1>CART</h1></router-link>
+          <router-link to="/mypage/order"><h1>MYPAGE</h1></router-link>
         </div>
       </div>
     </div>

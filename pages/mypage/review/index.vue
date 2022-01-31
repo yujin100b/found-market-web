@@ -1,5 +1,5 @@
 <template>
-  <div class="account">
+  <div class="review-wrap">
     <Navi fixed />
     <div class="section">
       <h1>MY PAGE</h1>
@@ -23,13 +23,11 @@
               >내가 작성한 리뷰</span
             >
           </p>
-          <div>
+          <div v-if="tab == 'one'">
             <ReviewItem :content="will_review" />
-
           </div>
-          <div>
-
-
+          <div v-if="tab == 'two'">
+            <ReviewedItem :content="reviewed" />
           </div>
         </div>
       </div>
@@ -46,8 +44,8 @@ export default {
       user: "이희준",
       will_review: [
         {
-           id : 1,
-           product: {
+          id: 1,
+          product: {
             id: 1,
             img: "/slide1.jpg",
             title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
@@ -65,11 +63,11 @@ export default {
             tips: "",
             partner: "",
           },
-          quantity: 10
-         },
-         {
-           id : 2,
-           product: {
+          quantity: 10,
+        },
+        {
+          id: 2,
+          product: {
             id: 1,
             img: "/slide1.jpg",
             title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
@@ -87,13 +85,13 @@ export default {
             tips: "",
             partner: "",
           },
-          quantity: 10
-         },
+          quantity: 10,
+        },
       ],
       reviewed: [
         {
-           id : 1,
-           product: {
+          id: 1,
+          product: {
             id: 1,
             img: "/slide1.jpg",
             title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
@@ -111,11 +109,11 @@ export default {
             tips: "",
             partner: "",
           },
-          quantity: 10
-         },
-         {
-           id : 2,
-           product: {
+          quantity: 10,
+        },
+        {
+          id: 2,
+          product: {
             id: 1,
             img: "/slide1.jpg",
             title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
@@ -133,8 +131,8 @@ export default {
             tips: "",
             partner: "",
           },
-          quantity: 10
-         },
+          quantity: 10,
+        },
       ],
     };
   },
@@ -150,13 +148,13 @@ export default {
 </script>
 
 <style scoped>
-.account {
+.review-wrap {
   padding-top: 152px;
 }
-.account > .section {
+.review-wrap > .section {
   padding-bottom: 267px;
 }
-.account h1 {
+.review-wrap h1 {
   font-family: IM_Hyemin-Bold;
   font-style: normal;
   font-weight: bold;
@@ -165,7 +163,7 @@ export default {
   text-align: center;
   margin-bottom: 74px;
 }
-.account .wrap {
+.review-wrap .wrap {
   display: flex;
   border-top: 3px solid #000000;
 }
@@ -226,5 +224,56 @@ export default {
 }
 .wrap .review p span:first-child {
   margin-right: 38px;
+}
+@media (max-width: 980px) {
+  .review-wrap h1 {
+    font-size: 30px;
+    line-height: 37px;
+    margin-bottom: 5px;
+  }
+  .review-wrap .wrap {
+    flex-direction: column;
+    border-top: 0;
+  }
+  .wrap .mypage-nav {
+    width: 100%;
+    padding-left: 0;
+  }
+  .wrap .mypage-nav h2 {
+    font-size: 20px;
+    line-height: 29px;
+    text-align: center;
+    padding: 0;
+    padding-bottom: 38px;
+  }
+  .wrap .mypage-nav div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .wrap .mypage-nav div a {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: underline;
+  }
+  .wrap .review {
+    width: 100%;
+  }
+  .wrap .review h2 {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    border-top: 3px solid #000;
+  }
+  .wrap .review p {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .wrap .review p span {
+    font-size: 16px;
+    line-height: 22px;
+    text-decoration-line: underline;
+  }
 }
 </style>

@@ -17,10 +17,10 @@
           <h2>회원정보 수정</h2>
           <div>
             <p>비밀번호 수정</p>
-            <input v-model="current" placeholder="현재 비밀번호" />
-            <input v-model="new_word" placeholder="새 비밀번호" />
-            <input v-model="new_confirm" placeholder="새 비밀번호 확인" />
-            <span></span>
+            <input v-model="current" type="password" placeholder="현재 비밀번호" />
+            <input v-model="new_word" type="password" placeholder="새 비밀번호" />
+            <input v-model="new_confirm" type="password" placeholder="새 비밀번호 확인" />
+            <span>{{ help_text }}</span>
             <button>변경하기</button>
           </div>
 
@@ -32,6 +32,7 @@
                 id="sample6_postcode"
                 placeholder="우편번호"
                 class="with-button"
+                v-model="postcode"
               />
               <input
                 type="button"
@@ -44,14 +45,16 @@
                 id="sample6_address"
                 placeholder="주소"
                 class="full-width"
+                v-model="address_1"
               />
               <input
                 type="text"
                 id="sample6_detailAddress"
                 placeholder="상세주소"
                 class="full-width"
+                v-model="address_2"
               />
-              <span></span>
+              <span class="help-text">{{ address_help_text }}</span>
               <div class="btn-and-links">
 
                 <button>변경하기</button>
@@ -74,9 +77,30 @@ export default {
   data(){
     return{
       user: "이희준",
-      current: "",
-      new_word : "",
-      new_confirm : "",
+      current: null,
+      new_word : null,
+      new_confirm : null,
+      postcode : null,
+      address_1 : null,
+      address_2 : null,
+
+    }
+  },
+  computed:{
+    help_text(){
+      if(!(this.current && this.new_word && this.new_confirm)){
+        return "모든 입력창을 입력해주세요"
+      }
+      else if (this.new_word !== this.new_confirm){
+        return "새 비밀번호와 확인값이 다릅니다."
+      }
+      return ""
+    },
+    address_help_text(){
+      if(!(this.postcode && this.address_1 && this.address_2)){
+        return "모든 입력창을 입력해주세요"
+      }
+      return ""
     }
   },
   methods:{
@@ -222,9 +246,13 @@ export default {
 
 }
 .account-form > div span{
-  padding-top:14px;
-  margin-bottom:28px;
-  height: 17px;
+      font-family: Noto Sans KR;
+    padding-top: 14px;
+    margin-bottom: 28px;
+    height: 17px;
+    font-size: 12px;
+    line-height: 17px;
+    color: #FF0000;
 }
 .account-form > div button,
 .account-form > div input[type="button"]{
@@ -284,5 +312,62 @@ export default {
   font-size: 18px;
   line-height: 26px;
   text-decoration-line: underline;
+}
+@media (max-width: 980px) {
+  .account h1 {
+    font-size: 30px;
+    line-height: 37px;
+    margin-bottom: 5px;
+  }
+  .account .wrap {
+    flex-direction: column;
+    border-top: 0;
+  }
+  .wrap .mypage-nav {
+    width: 100%;
+    padding-left: 0;
+  }
+  .wrap .mypage-nav h2 {
+    font-size: 20px;
+    line-height: 29px;
+    text-align: center;
+    padding: 0;
+    padding-bottom: 38px;
+  }
+  .wrap .mypage-nav div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .wrap .mypage-nav div a {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: underline;
+  }
+  .wrap .account-form {
+    width: 100%;
+  }
+  .wrap .account-form h2 {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    border-top: 3px solid #000;
+  }
+  .account-form > div .btn-and-links{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .account-form > div .btn-and-links > button{
+    margin-bottom: 20px;
+  }
+  .account-form > div .btn-and-links .links{
+    padding-top: 16px;
+    border-top: 1px solid #000000;
+    width: 100%;;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .account-form > div .btn-and-links .links button{
+    text-align: right;
+  }
 }
 </style>

@@ -54,11 +54,9 @@
               </select>
             </label>
           </div>
-          <div class="transaction">
+          <div class="transaction pc">
             <h1>결제 방법</h1>
-            <p>
-              무통장 입금: 국민 009901-04-162032 더로컬프로젝트(주)
-            </p>
+            <p>무통장 입금: 국민 009901-04-162032 더로컬프로젝트(주)</p>
           </div>
         </div>
         <div class="summary">
@@ -96,7 +94,7 @@
               <p class="price">{{ totalPrice }}원</p>
             </div>
           </div>
-          <div class="confirm-wrap">
+          <div class="confirm-wrap pc">
             <check-box ref="confirmDoc" />
             <div>
               <p>
@@ -107,11 +105,29 @@
               <p>개인정보 제3자 제공 동의 (필수) <span>보기</span></p>
             </div>
           </div>
-          <div class="button-wrap">
+          <div class="button-wrap pc">
             <button @click="goToSuccess()">결제하기</button>
           </div>
         </div>
       </div>
+      <div class="transaction mobile">
+        <h1>결제 방법</h1>
+        <p>무통장 입금: 국민 009901-04-162032 더로컬프로젝트(주)</p>
+      </div>
+      <div class="confirm-wrap mobile">
+            <check-box ref="confirmDoc" />
+            <div>
+              <p>
+                상품 및 구매 조건을 확인하였으며, 결제 대행 서비스에
+                동의합니다.(필수)
+              </p>
+              <p>개인정보 수집/이용 동의 (필수) <span>보기</span></p>
+              <p>개인정보 제3자 제공 동의 (필수) <span>보기</span></p>
+            </div>
+          </div>
+          <div class="button-wrap mobile">
+            <button @click="goToSuccess()">결제하기</button>
+          </div>
     </div>
     <Footer />
   </div>
@@ -245,7 +261,7 @@ export default {
     },
     goToSuccess() {
       /* TODO: 주분 정보 저장하는 코드 넣기 */
-      this.$router.push("/order/success")
+      this.$router.push("/order/success");
     },
   },
 };
@@ -311,6 +327,7 @@ export default {
   width: calc(100% - 180px);
 }
 .order-body .shipping label input[type="button"] {
+  background: #FFD228;
   width: 100px;
 }
 .order-body .shipping label select {
@@ -330,8 +347,12 @@ export default {
 .order-body .shipping label.phone input {
   width: 115px;
 }
-.transaction p{
-  font-family: 'Noto Sans KR';
+.order-body .shipping label {
+    display: block;
+    margin-bottom: 10px;
+}
+.transaction p {
+  font-family: "Noto Sans KR";
 }
 .order-body .summary-header {
   display: flex;
@@ -420,7 +441,7 @@ export default {
 .order-body .summary-footer p.price {
   font-weight: bold;
 }
-.confirm-wrap  {
+.confirm-wrap {
   display: flex;
   align-items: flex-start;
   margin-bottom: 42px;
@@ -434,21 +455,21 @@ export default {
   padding-left: 8px;
   padding-top: 8px;
 }
-.confirm-wrap p:not(:first-child){
+.confirm-wrap p:not(:first-child) {
   color: #666666;
 }
-.confirm-wrap p span{
+.confirm-wrap p span {
   text-decoration: underline;
 }
-.button-wrap{
+.button-wrap {
   display: flex;
   justify-content: center;
   margin-bottom: 69px;
 }
-.button-wrap button{
+.button-wrap button {
   width: 279px;
   height: 50px;
-  background: #FFD228;
+  background: #ffd228;
   border: 2px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
@@ -457,5 +478,73 @@ export default {
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
+}
+@media (max-width: 980px) {
+  .order{
+    padding-top: 53px;
+  }
+  .order h1 {
+    width: 315px;
+    margin: 0 auto;
+  }
+  .order .section > h1{
+    border-bottom:2px solid #000000;
+    padding-bottom: 1px;
+    margin-bottom: 18px;
+  }
+  .order-body {
+    flex-direction: column;
+  }
+  .order-body > div.inputs {
+    width: 315px;
+    margin: 0 auto;
+    padding-right: 0;
+    padding-bottom: 30px;
+  }
+  .order-body .shipping label input.full-width{
+    width: calc(100% - 59px);
+}
+  .order-body .shipping label span {
+    width: 54px;
+  }
+  .order-body .shipping label input.with-button {
+    width: calc(100% - 163px);
+  }
+  #sample6_address, #sample6_detailAddress {
+    margin-left: 59px;
+  }
+  .order-body .shipping label.phone input{
+    width: 74px;
+  }
+  .order-body .shipping label select{
+    width: calc(100% - 59px);
+  }
+  .order-body > div.summary {
+    width: 100%;
+    border: 0;
+  }
+  .order-body .summary-header {
+    font-size: 12px;
+    line-height: 16px;
+    padding-top: 2px;
+    border-top: 2px solid #000000;
+  }
+  .transaction.mobile,
+  .confirm-wrap.mobile{
+    display: block;
+    width: 315px;
+    margin: 0 auto
+  }
+  .transaction.mobile{
+    padding: 36px 0;
+  }
+  .confirm-wrap.mobile{
+    display: flex;
+    margin-bottom: 60px;
+  }
+  .transaction.mobile h1{
+    font-size: 22px;
+    line-height: 30px;
+  }
 }
 </style>

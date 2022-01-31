@@ -22,7 +22,8 @@
                 <span>주문번호</span><span>{{ orderdetail.order_num }}</span>
               </p>
               <p>
-                <span>주문일시</span><span>{{ created_date(orderdetail.created_at) }}</span>
+                <span>주문일시</span
+                ><span>{{ created_date(orderdetail.created_at) }}</span>
               </p>
               <p>
                 <span>주문자명</span
@@ -96,27 +97,44 @@
 
           <div class="transaction" v-if="isCompleted">
             <p>[결제 정보]</p>
-            <p><span>결제방법</span> <span>{{ isCompleted.payment_type }}</span></p>
-            <p><span>결제일자</span> <span>{{ created_date(isCompleted.created_at) }}</span></p>
-            <p><span>결제금액</span> <span>{{ isCompleted.total }}</span></p>
-            <p><span>세부내역</span> <span>{{ isCompleted.detail }}</span></p>
+            <p>
+              <span>결제방법</span> <span>{{ isCompleted.payment_type }}</span>
+            </p>
+            <p>
+              <span>결제일자</span>
+              <span>{{ created_date(isCompleted.created_at) }}</span>
+            </p>
+            <p>
+              <span>결제금액</span> <span>{{ isCompleted.total }}</span>
+            </p>
+            <p>
+              <span>세부내역</span> <span>{{ isCompleted.detail }}</span>
+            </p>
           </div>
 
           <div class="transaction" v-if="isCanceled">
             <p>[취소/환불 정보]</p>
-            <p><span>취소일자</span> <span>{{ created_date(isCanceled.created_at)  }}</span></p>
-            <p><span>차감금액</span> <span>{{ isCompleted.total - isCanceled.cost }}</span></p>
-            <p><span>환불금액</span> <span>{{ isCanceled.cost }}</span></p>
-        </div>
+            <p>
+              <span>취소일자</span>
+              <span>{{ created_date(isCanceled.created_at) }}</span>
+            </p>
+            <p>
+              <span>차감금액</span>
+              <span>{{ isCompleted.total - isCanceled.cost }}</span>
+            </p>
+            <p>
+              <span>환불금액</span> <span>{{ isCanceled.cost }}</span>
+            </p>
+          </div>
 
-        <div class="buttons">
+          <div class="buttons">
             <button v-if="!isCanceled">주문 취소 요청</button>
             <button>주문 내역서 출력</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <Footer />
+    <Footer />
   </div>
 </template>
 
@@ -128,7 +146,8 @@ export default {
       orderdetail: {
         order_num: "OD20210303-190718",
         shipping_num: "대한통운 3434987920393",
-        order_name: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g 외 1건",
+        order_name:
+          "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g 외 1건",
         user: {
           username: "이희준",
         },
@@ -234,23 +253,21 @@ export default {
       const cancel = this.orderdetail.transaction.filter(
         (el) => el.status == "취소완료"
       );
-      if (cancel.length > 0){
-        return this.orderdetail.cancel[0]
-      }
-      else return false
+      if (cancel.length > 0) {
+        return this.orderdetail.cancel[0];
+      } else return false;
     },
-    isCompleted(){
+    isCompleted() {
       const complete = this.orderdetail.transaction.filter(
         (el) => el.status == "결제완료"
       );
-      if ( complete.length > 0 )
-        return complete[0]
-      else return false
-    }
+      if (complete.length > 0) return complete[0];
+      else return false;
+    },
   },
   methods: {
     created_date(created_at) {
-      if (created_at == null) return ""
+      if (created_at == null) return "";
       let [date, _] = created_at.split("T");
       return date.replace(/\-/gi, ".");
     },
@@ -471,7 +488,7 @@ export default {
   max-width: unset;
 }
 .orderdetail .table .quantity,
-.orderdetail .table .status{
+.orderdetail .table .status {
   font-family: Roboto;
   font-style: normal;
   font-size: 16px;
@@ -513,25 +530,25 @@ export default {
   font-size: 22px;
   line-height: 30px;
 }
-.orderdetail .transaction{
+.orderdetail .transaction {
   padding-top: 36px;
 }
-.orderdetail .transaction p{
+.orderdetail .transaction p {
   padding-bottom: 23px;
 }
-.orderdetail .transaction p:first-child{
+.orderdetail .transaction p:first-child {
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
   line-height: 30px;
 }
-.orderdetail .transaction p:not(:first-child){
+.orderdetail .transaction p:not(:first-child) {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-.orderdetail .transaction p:not(:first-child) span{
+.orderdetail .transaction p:not(:first-child) span {
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
@@ -547,15 +564,15 @@ export default {
   font-size: 22px;
   line-height: 30px;
 }
-.buttons{
+.buttons {
   display: flex;
   justify-content: flex-end;
   padding-bottom: 38px;
   border-bottom: 3px solid #000;
 }
-.buttons button{
+.buttons button {
   padding: 14px 22px;
-  background: #FFD228;
+  background: #ffd228;
   border: 3px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
@@ -565,5 +582,132 @@ export default {
   font-size: 12px;
   line-height: 14px;
   color: #000000;
+}
+@media (max-width: 980px) {
+  .order h1 {
+    font-size: 30px;
+    line-height: 37px;
+    margin-bottom: 5px;
+  }
+  .order .wrap {
+    flex-direction: column;
+    border-top: 0;
+  }
+  .wrap .mypage-nav {
+    width: 100%;
+    padding-left: 0;
+  }
+  .wrap .mypage-nav h2 {
+    font-size: 20px;
+    line-height: 29px;
+    text-align: center;
+    padding: 0;
+    padding-bottom: 38px;
+  }
+  .wrap .mypage-nav div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .wrap .mypage-nav div a {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: underline;
+  }
+  .wrap .orderdetail {
+    width: 100%;
+  }
+  .wrap .orderdetail h2 {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    border-top: 3px solid #000;
+  }
+  .orderdetail .meta-wrap {
+    flex-direction: column;
+  }
+  .orderdetail .meta-wrap .meta {
+    width: 100%;
+    padding: 16.5px 0;
+  }
+  .orderdetail .meta-wrap .meta p span:first-child,
+  .orderdetail .meta-wrap .meta p:first-child,
+  .orderdetail .meta-wrap .meta p span {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .orderdetail .table .cart-info {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .orderdetail .table thead th:last-child {
+    display: none;
+  }
+  .orderdetail .table tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .orderdetail .table td:last-child {
+    display: none;
+  }
+  .orderdetail .table thead th {
+    font-size: 12px;
+    line-height: 16px;
+    border-bottom: 0;
+  }
+  .orderdetail .table .cart-info .info {
+    padding-left: 19px;
+  }
+  .orderdetail .table .cart-item .img-wrap {
+    position: relative;
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+  }
+  .orderdetail .table .cart-info .info {
+    padding-left: 0;
+    width: 75px;
+  }
+  .orderdetail .table td {
+    padding: 11px 0;
+  }
+  .orderdetail .table .cart-info .info p {
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 2px;
+  }
+  .orderdetail .table .cart-info .info p:last-child {
+    font-family: Noto Sans KR;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .orderdetail .transaction p[data-v-25ba529e]:first-child {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .orderdetail .transaction p:not(:first-child) span:first-child,
+  .orderdetail .transaction p:not(:first-child) span {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .buttons {
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    padding-top: 60px;
+    border-bottom: 0;
+  }
+  .buttons button {
+    width: 171px;
+    height: 30px;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 0;
+  }
 }
 </style>

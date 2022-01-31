@@ -142,7 +142,54 @@ export default {
   /* identical to box height */
   color: #000000;
 }
-
+@media (max-width: 980px) {
+  .notice h1 {
+    font-size: 30px;
+    line-height: 37px;
+    margin-bottom: 5px;
+  }
+  .notice .wrap {
+    flex-direction: column;
+    border-top: 0;
+  }
+  .wrap .mypage-nav {
+    width: 100%;
+    padding-left: 0;
+  }
+  .wrap .mypage-nav h2 {
+    font-size: 20px;
+    line-height: 29px;
+    text-align: center;
+    padding: 0;
+    padding-bottom: 38px;
+  }
+  .wrap .mypage-nav div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .wrap .mypage-nav div a {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: underline;
+  }
+  .wrap .noticelist {
+    width: 100%;
+  }
+  .wrap .noticelist h2 {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    border-top: 3px solid #000;
+  }
+  #lb_accordeon h2{
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .lb_accordeon .lb_item .lb_item-copy-ct{
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
 
 
 </style>

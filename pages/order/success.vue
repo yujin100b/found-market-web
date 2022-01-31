@@ -7,7 +7,7 @@
       </div>
       <h1 class="success-title">"주문이 완료되었습니다."</h1>
       <p class="success-account">
-        무통장 입금 계좌번호 : 국민 009901-04-162032 더로컬프로젝트(주)
+        무통장 입금 계좌번호 <br> 국민 009901-04-162032 더로컬프로젝트(주)
       </p>
       <table class="table is-fullwidth">
         <thead>
@@ -24,9 +24,10 @@
               <p>
                 주문 번호 : <span>{{ order.order_num }}</span>
               </p>
+              <p class="mobile">{{ order.total_price }}원</p>
             </td>
             <td>
-              <p>{{ order.total_price }}원</p>
+              <p class="pc">{{ order.total_price }}원</p>
             </td>
             <td>
               <p>{{ order.status }}</p>
@@ -162,5 +163,57 @@ table thead th {
   font-size: 22px;
   line-height: 30px;
   text-align: center;
+}
+@media (max-width:980px) {
+  .success{
+    padding-top:83px;
+  }
+  .success .section[data-v-403efcce] {
+      padding-bottom: 62px;
+  }
+  .success .img-wrapper img{
+    width: 113.7px;
+  }
+  .section .success-title {
+    font-size: 22px;
+    line-height: 27px;
+    margin-bottom: 13px;
+  }
+  .success-account{
+    font-size: 14px;
+    line-height: 19px;
+    margin-bottom: 13px;
+  }
+  .success thead{
+    display: none;
+  }
+  table.is-fullwidth{
+    border-bottom: 1px solid #000000;
+    margin-bottom: 40px;
+  }
+  .table tbody{
+    border-top: 1px solid #000000;
+  }
+  .success td:nth-child(2){
+    display: none;
+  }
+   .success td.info p,
+  .success td.info{
+    text-align: left;
+  }
+  .success td p{
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .button-wrap{
+    flex-direction: column;
+  }
+  .button-wrap button{
+    width: 171px;
+    height: 30px;
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 7px;
+  }
 }
 </style>
