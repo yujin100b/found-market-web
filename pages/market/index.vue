@@ -147,7 +147,7 @@ export default {
   background-position-x: 20px;
   background-position-y: center;
   background-repeat: no-repeat;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 20px;
   width: 300px;
   height: 50px;

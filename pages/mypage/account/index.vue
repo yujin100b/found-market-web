@@ -180,14 +180,14 @@ export default {
   padding: 18px 36px;
   padding-left: 0;
   padding-bottom: 50px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
   line-height: 49px;
 }
 .wrap .mypage-nav a{
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 22px;
   line-height: 32px;
@@ -204,7 +204,7 @@ export default {
 }
 .wrap .account-form h2{
   padding: 18px 36px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -219,7 +219,7 @@ export default {
   padding: 39px 0;
 }
 .account-form > div > p{
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -237,7 +237,7 @@ export default {
   border-radius: 10px;
   margin-bottom: 5px;
 
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -246,7 +246,7 @@ export default {
 
 }
 .account-form > div span{
-      font-family: Noto Sans KR;
+      font-family: "Noto Sans KR";
     padding-top: 14px;
     margin-bottom: 28px;
     height: 17px;
@@ -257,21 +257,21 @@ export default {
 .account-form > div button,
 .account-form > div input[type="button"]{
   width: 79px;
-  padding: 11px 0px;
+  padding: 6px 0px;
   background: #FFD228;
-  border: 3px solid #000000;
+  border: 2px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 19px;
   color: #000000;
 }
 .account-form > div input[type="button"]{
   width: 92px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -303,10 +303,10 @@ export default {
   border: none;
   border-radius: 0;
 
-  width: 109px;
+  width: 104px;
   height: 18px;
 
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

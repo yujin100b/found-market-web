@@ -98,14 +98,14 @@ export default {
   padding: 18px 36px;
   padding-left: 0;
   padding-bottom: 50px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
   line-height: 49px;
 }
 .wrap .mypage-nav a {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 22px;
   line-height: 32px;
@@ -122,7 +122,7 @@ export default {
 }
 .wrap .noticelist h2 {
   padding: 18px 36px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -134,7 +134,7 @@ export default {
   padding-top: 39px;
   padding-bottom: 7px;
   border-bottom: 2px solid #000000;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -180,14 +180,6 @@ export default {
     line-height: 20px;
     text-align: center;
     border-top: 3px solid #000;
-  }
-  #lb_accordeon h2{
-    font-size: 12px;
-    line-height: 16px;
-  }
-  .lb_accordeon .lb_item .lb_item-copy-ct{
-    font-size: 12px;
-    line-height: 20px;
   }
 }
 

@@ -21,7 +21,7 @@
               <input
                 type="button"
                 @click="addrSearch"
-                value="우편번호 찾기"
+                value="우편번호 검색"
               /><br />
               <input
                 type="text"
@@ -275,7 +275,7 @@ export default {
   padding-top: 270px;
 }
 .order h1 {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -304,7 +304,7 @@ export default {
   margin-bottom: 40px;
 }
 .order-body .shipping label span {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -363,7 +363,7 @@ export default {
 .order-body .summary-header {
   display: flex;
   justify-content: space-between;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
 }
 .order-body .summary-header > span {
   width: 33.33%;
@@ -398,7 +398,7 @@ export default {
 }
 .order-body .summary-item > span:nth-child(2),
 .order-body .summary-item > span:last-child {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-weight: bold;
 }
 .order-body .summary-item > span:last-child {
@@ -431,7 +431,7 @@ export default {
   padding-top: 9px;
 }
 .order-body .summary-item p.item-price {
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-weight: bold;
 }
 .order-body .summary-footer {
@@ -442,7 +442,7 @@ export default {
   margin-bottom: 65px;
 }
 .order-body .summary-footer p {
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   text-align: center;
 }
 .order-body .summary-footer p.label {
@@ -458,7 +458,7 @@ export default {
   margin-bottom: 42px;
 }
 .confirm-wrap p {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: normal;
   font-size: 11px;
@@ -485,7 +485,7 @@ export default {
   box-sizing: border-box;
   border-radius: 10px;
 
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -540,15 +540,23 @@ label.base-shipping > label > span{
   .order-body .shipping label select{
     width: calc(100% - 59px);
   }
+  label.base-shipping{
+    min-width: unset;
+  }
   .order-body > div.summary {
     width: 100%;
     border: 0;
+    padding: 40px 29px;
   }
   .order-body .summary-header {
     font-size: 12px;
     line-height: 16px;
     padding-top: 2px;
     border-top: 2px solid #000000;
+  }
+  .confirm-wrap p{
+    padding-top: 0;
+    line-height: 13px;
   }
   .transaction.mobile,
   .confirm-wrap.mobile{

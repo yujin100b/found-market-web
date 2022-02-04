@@ -56,7 +56,7 @@ export default {
 .join h1{
   margin-bottom: 16px;
   text-align: center;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -76,7 +76,7 @@ export default {
   justify-content: center;
 }
 .join .links span{
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -104,7 +104,7 @@ export default {
   box-sizing: border-box;
   border-radius: 10px;
   margin-bottom: 5px;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -126,12 +126,12 @@ export default {
   border-radius: 10px;
   border: 1px solid #000000;
 
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
 }
 .join button.join-btn{
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 12px;

@@ -185,7 +185,7 @@ export default {
   padding-bottom: 1em;
 }
 .local-news-item .text-wrap .post-info{
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 12px;
   line-height: 14px;
   letter-spacing: -0.015em;

@@ -105,14 +105,14 @@ export default {
   padding: 18px 36px;
   padding-left: 0;
   padding-bottom: 50px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
   line-height: 49px;
 }
 .wrap .mypage-nav a {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 22px;
   line-height: 32px;
@@ -129,7 +129,7 @@ export default {
 }
 .wrap .orderlist h2 {
   padding: 18px 36px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -150,7 +150,7 @@ export default {
 .wrap .orderlist .th span {
   display: block;
   text-align: center;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -172,7 +172,7 @@ export default {
   padding-left: 24px;
 }
 .wrap .orderlist .tr div.info p {
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -195,7 +195,7 @@ export default {
   justify-content: center;
 }
 .wrap .orderlist .tr div.status {
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -257,5 +257,9 @@ export default {
     font-size: 12px;
     line-height: 14px;
   }
+  .wrap .orderlist .th span:last-child, .wrap .orderlist .tr div.status{
+    justify-content: flex-end;
+  }
+  
 }
 </style>

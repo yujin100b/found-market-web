@@ -122,7 +122,7 @@ export default {
   padding-top: 82px;
 }
 .about-row p {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 18px;
   line-height: 30px;
   max-width: 620px;

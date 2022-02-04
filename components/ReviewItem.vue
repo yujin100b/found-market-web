@@ -37,7 +37,7 @@
                     <div class="img-wrap">
                       <img :src="image" />
                     </div>
-                    <button @click="removeImage(index)">X</button>
+                    <button @click="removeImage(index)">x</button>
                   </div>
                 </div>
               </div>
@@ -152,13 +152,14 @@ export default {
   position: absolute;
   top: -5px;
   right: 5px;
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   border: 0;
   border-radius: 10px;
   background: black;
   color: #fff;
-  padding: 0 !important
+  padding: 0 !important;
+  padding-bottom: 3px !important;
 }
 
 .lb_accordeon .lb_item {
@@ -178,7 +179,7 @@ export default {
 }
 .list-item-wrap {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -199,7 +200,7 @@ export default {
   margin-bottom: 5px;
 }
 .list-item-wrap .text-wrap p:last-child {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -212,14 +213,14 @@ export default {
   border: 2px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 19px;
   /* identical to box height */
   color: #000000;
-  padding: 11px;
+  padding: 6px 11px;
 }
 .lb_accordeon .lb_item__copy {
   margin: 0;
@@ -229,7 +230,7 @@ export default {
 .lb_accordeon .lb_item .lb_item-copy-ct {
   padding: 30px 0;
   padding-bottom: 15px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -244,6 +245,7 @@ export default {
       width: 100%;
     display: flex;
     overflow: scroll;
+    padding-top:5px;
 }
 
 .img-input-form label {
@@ -257,7 +259,7 @@ export default {
     min-width: 100px;
 }
 .img-input-form label span{
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
@@ -266,7 +268,16 @@ export default {
 .img-input-form input{
   display: none;
 }
-
+.lb_accordeon .lb_item .lb_item-copy-ct .img-w-btn button{
+  font-size: 12px;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  padding-bottom: 3px !important;
+}
 .text-input-form{
   padding-top: 30px;
   display: flex;
@@ -307,7 +318,7 @@ export default {
   margin: 0;
   display: flex;
   justify-content: space-between;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 18px;
   line-height: 25px;
@@ -355,8 +366,15 @@ export default {
     height: 70px;
     min-width: 70px;
 }
+.lb_accordeon .lb_item__hl{
+      padding-bottom: 15px;
+}
 .lb_accordeon .lb_item .lb_item-copy-ct {
     padding: 15px 0;
+}
+
+.lb_accordeon .lb_item__hl button{
+      margin-top: 36px;
 }
 }
 </style>

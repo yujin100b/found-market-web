@@ -175,14 +175,14 @@ export default {
   padding: 18px 36px;
   padding-left: 0;
   padding-bottom: 50px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
   line-height: 49px;
 }
 .wrap .mypage-nav a {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 22px;
   line-height: 32px;
@@ -199,7 +199,7 @@ export default {
 }
 .wrap .review h2 {
   padding: 18px 36px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -213,7 +213,7 @@ export default {
   border-bottom: 2px solid #000;
 }
 .wrap .review p span {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 22px;
   line-height: 30px;

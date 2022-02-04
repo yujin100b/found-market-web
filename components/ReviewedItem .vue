@@ -101,12 +101,12 @@ export default {
   margin-bottom: 5px;
 }
 .list-item-wrap .text-wrap p:last-child {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
-  line-height: 33px;
-  /* identical to box height, or 183% */
+  line-height: 28px;
+  padding-top: 10px;
 }
 .lb_accordeon .lb_item__hl button,
 .lb_accordeon .lb_item .lb_item-copy-ct button {
@@ -114,7 +114,7 @@ export default {
   border: 0;
   box-sizing: border-box;
   border-radius: 10px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -132,7 +132,7 @@ export default {
 .lb_accordeon .lb_item .lb_item-copy-ct {
   padding: 30px 0;
   padding-bottom: 15px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

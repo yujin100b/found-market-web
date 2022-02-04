@@ -306,14 +306,14 @@ export default {
   padding: 18px 36px;
   padding-left: 0;
   padding-bottom: 50px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
   line-height: 49px;
 }
 .wrap .mypage-nav a {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 22px;
   line-height: 32px;
@@ -329,7 +329,7 @@ export default {
 }
 .wrap .orderdetail h2 {
   padding: 18px 36px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -350,7 +350,7 @@ export default {
 .wrap .orderdetail .th span {
   display: block;
   text-align: center;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -372,7 +372,7 @@ export default {
   padding-left: 24px;
 }
 .wrap .orderdetail .tr div.info p {
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -395,7 +395,7 @@ export default {
   justify-content: center;
 }
 .wrap .orderdetail .tr div.status {
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -409,13 +409,13 @@ export default {
   padding: 33px 0;
 }
 .orderdetail .meta-wrap .meta p {
-  padding-bottom: 23px;
+  padding-bottom: 10px;
   display: flex;
   align-items: flex-start;
 }
 .orderdetail .meta-wrap .meta p span {
   display: block;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -427,7 +427,7 @@ export default {
 }
 .orderdetail .meta-wrap .meta p span:first-child,
 .orderdetail .meta-wrap .meta p:first-child {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -439,7 +439,7 @@ export default {
 .orderdetail .table thead th {
   text-align: center;
   border-bottom: 1px solid #000000;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -489,7 +489,7 @@ export default {
 }
 .orderdetail .table .quantity,
 .orderdetail .table .status {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 16px;
   line-height: 19px;
@@ -500,7 +500,7 @@ export default {
   border: 3px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -516,7 +516,7 @@ export default {
   border-bottom: 3px solid #000000;
 }
 .orderdetail .summary p {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -524,7 +524,7 @@ export default {
 }
 .orderdetail .summary p:last-child {
   padding-left: 28px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -534,10 +534,10 @@ export default {
   padding-top: 36px;
 }
 .orderdetail .transaction p {
-  padding-bottom: 23px;
+  padding-bottom: 10px;
 }
 .orderdetail .transaction p:first-child {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -549,7 +549,7 @@ export default {
   justify-content: flex-start;
 }
 .orderdetail .transaction p:not(:first-child) span {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: normal;
   font-size: 22px;
@@ -558,7 +558,7 @@ export default {
 .orderdetail .transaction p:not(:first-child) span:first-child {
   width: 120px;
   min-width: 120px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -576,7 +576,7 @@ export default {
   border: 3px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
@@ -680,11 +680,14 @@ export default {
     margin-bottom: 2px;
   }
   .orderdetail .table .cart-info .info p:last-child {
-    font-family: Noto Sans KR;
+    font-family: "Noto Sans KR";
     font-size: 14px;
     line-height: 19px;
     font-weight: bold;
     margin-bottom: 0;
+  }
+  .orderdetail .summary{
+    display: none;
   }
   .orderdetail .transaction p[data-v-25ba529e]:first-child {
     font-size: 16px;

@@ -119,6 +119,7 @@ export default {
   .navi .link-wrap button,
   .navi .link-wrap > a h1{
     font-family: IM_Hyemin-Bold;
+    font-weight: 900;
     background: none;
     border: none;
     font-size: 12px;

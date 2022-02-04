@@ -16,7 +16,7 @@
           </thead>
           <tbody>
             <tr class="cart-item" v-for="(item, index) in cart" :key="item.id">
-              <th><check-box ref="confirmDoc" /></th>
+              <th class="no-padding"><check-box ref="confirmDoc" /></th>
               <td class="img">
                 <div class="img-wrap">
                   <img :src="item.product.img" />
@@ -28,9 +28,35 @@
               </td>
               <td>
                 <div class="cart-button">
-                  <button>-</button>
+                  <button>
+                    <svg
+                  width="7"
+                  height="4"
+                  viewBox="0 0 7 4"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.399414 3.03208V0.0800781H6.56741V3.03208H0.399414Z"
+                    fill="black"
+                  />
+                </svg>
+                  </button>
                   <input type="number" v-model="cart[index].quantity" />
-                  <button>+</button>
+                  <button>
+                    <svg
+                  width="11"
+                  height="10"
+                  viewBox="0 0 11 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.55867 3.88H10.0587V6.02H6.55867V9.76H4.41867V6.02H0.918672V3.88H4.41867V0.0999994H6.55867V3.88Z"
+                    fill="black"
+                  />
+                </svg>
+                  </button>
                 </div>
               </td>
               <td class="cart-amount">
@@ -204,7 +230,7 @@ export default {
   padding-left: 113px;
 }
 .summary p.label {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
@@ -213,7 +239,7 @@ export default {
   color: #000000;
 }
 .summary p.price {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 21px;
@@ -235,7 +261,7 @@ export default {
 .cart .table thead th {
   border: 0;
   text-align: center;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 18px;
   line-height: 22px;
   color: #000000;
@@ -286,7 +312,7 @@ export default {
   padding-bottom: 0.2em;
 }
 .cart-item td.info p:last-child {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-weight: bold;
   font-size: 22px;
   line-height: 30px;
@@ -305,6 +331,9 @@ export default {
   margin-right: 5px;
   font-size: 20px;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cart-item .cart-button button:not(.addcart) {
   min-width: 57px;
@@ -317,7 +346,7 @@ export default {
   border-radius: 15px;
   margin-right: 5px;
   text-align: center;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -325,7 +354,7 @@ export default {
   max-width: 132px;
 }
 .cart-item .cart-amount {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -338,7 +367,7 @@ export default {
 }
 .cart .remove-buttons button {
   margin-left: 24px;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -364,7 +393,7 @@ export default {
   box-sizing: border-box;
   border-radius: 10px;
 
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -401,6 +430,10 @@ export default {
     text-align: left;
     padding-left: 0;
   }
+  .cart-item th.no-padding{
+    padding: 0;
+    padding-top: 8px;
+  }
   .cart-item td {
     height: auto;
     border: 0;
@@ -414,6 +447,7 @@ export default {
   }
   .cart-item td.img {
     display: flex;
+    padding-top:0;
   }
   .cart-item td.info p:first-child {
     font-size: 16px;
@@ -440,6 +474,9 @@ export default {
     border-radius: 10px;
     width: 69px;
     height: 30px;
+    font-size: 18px;
+    padding-bottom: 3px;
+    line-height: 1;
   }
   .cart .remove-buttons {
     padding: 7px 0;

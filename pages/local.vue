@@ -3,7 +3,7 @@
     <Navi fixed/>
     <div class="section">
       <img class="header pc" src="/found-local-header.png" />
-      <img class="header mobile" src="/mobile-local-header.png" />
+      <img class="header mobile" src="/mobile-local-header.svg" />
       <img class="balls" src="/found-local-balls.png" />
       <h1>
         전국 8도 로컬 크리에이터와 <br />
@@ -122,7 +122,7 @@ export default {
   margin-bottom: 27px;
 }
 .local p.header-text {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 30px;
   line-height: 1.67;
   text-align: center;
@@ -183,6 +183,9 @@ export default {
   .local .form .question{
     font-size: 14px;
     line-height: 17px;
+  }
+  .local .form textarea {
+    border: 1px solid #000000;
   } 
   .local .closing-text{
     font-size: 12px;

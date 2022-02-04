@@ -370,7 +370,7 @@ export default {
   right: 0;
 }
 .nav-btn div {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   padding: 9px;

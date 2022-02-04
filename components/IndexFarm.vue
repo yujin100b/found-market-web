@@ -136,7 +136,7 @@ export default {
   line-height: 1.6;
   display: flex;
   align-items: center;
-  text-align: justify;
+  text-align: center;
   letter-spacing: -0.015em;
   text-decoration-line: underline;
 }

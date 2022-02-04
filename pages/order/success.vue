@@ -83,7 +83,7 @@ export default {
   margin-bottom: 62px;
 }
 .success-account {
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 32px;
@@ -107,7 +107,7 @@ table thead th {
   text-align: center;
   color: #000000;
   font-weight: 500;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -127,7 +127,7 @@ table thead th {
   border-bottom: 1px solid #000;
 }
 .success td p {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -135,10 +135,10 @@ table thead th {
   text-align: center;
 }
 .success td.info p {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
 }
 .success td.info p:last-child span {
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-weight: 500;
 }
 .success .info p:first-child {
@@ -157,7 +157,7 @@ table thead th {
   box-sizing: border-box;
   border-radius: 10px;
   margin: 0 16.5px;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   font-size: 22px;

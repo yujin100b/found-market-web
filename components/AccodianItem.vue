@@ -14,7 +14,7 @@
             <span class="id" v-html="item.id"></span>
             <span v-html="item.title"></span>
             </span>
-            <span v-html="item.create_at"></span>
+            <span class="create_at" v-html="item.create_at"></span>
           </h2>
         </div>
         <transition
@@ -97,7 +97,7 @@ export default {
 }
 .lb_accordeon .lb_item .lb_item-copy-ct {
   padding: 20px;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -133,7 +133,7 @@ export default {
   margin: 0;
   display: flex;
   justify-content: space-between;
-  font-family: Noto Sans;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-size: 18px;
   line-height: 25px;
@@ -147,5 +147,22 @@ export default {
 #lb_accordeon li {
   padding: 0;
   margin: 0;
+}
+#lb_accordeon h2 span.create_at{
+    font-size: 15px;
+  }
+
+@media (max-width:980px) {
+  #lb_accordeon h2{
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .lb_accordeon .lb_item .lb_item-copy-ct{
+    font-size: 12px;
+    line-height: 20px;
+  }
+  #lb_accordeon h2 span.create_at{
+    font-size: 9px;
+  }
 }
 </style>
