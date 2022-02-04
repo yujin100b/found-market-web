@@ -113,6 +113,9 @@ export default {
 </script>
 
 <style>
+.section.found-market{
+  padding-top:120px;
+}
 .found-market-list {
   padding-top: 80px;
 }

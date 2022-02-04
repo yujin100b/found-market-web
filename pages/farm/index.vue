@@ -83,6 +83,9 @@ export default {
   font-family: IM_Hyemin-Bold;
   padding: 32px 0;
 } */
+.found-farm{
+  padding-top:120px
+}
 .found-farm-list{
   padding-top: 80px;
 }

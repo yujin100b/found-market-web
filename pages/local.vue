@@ -103,7 +103,7 @@ export default {
 
 <style>
 .local{
-  padding-top: 80px;
+  padding-top: 120px;
 }
 .local img.header {
   margin-bottom: 137px;
