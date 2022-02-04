@@ -53,6 +53,9 @@
                 <option>부재시 전화 주시거나 문자 남겨 주세요.</option>
               </select>
             </label>
+            <label class="base-shipping">
+            <check-box /> <span>이 배송지를 기본 배송지로 저장합니다.</span>
+            </label>
           </div>
           <div class="transaction pc">
             <h1>결제 방법</h1>
@@ -272,12 +275,15 @@ export default {
   padding-top: 270px;
 }
 .order h1 {
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
   line-height: 26px;
   padding-bottom: 34px;
+}
+.order .transaction h1{
+  padding-top: 50px;
 }
 .order-body {
   display: flex;
@@ -390,6 +396,11 @@ export default {
   align-items: center;
   justify-content: center;
 }
+.order-body .summary-item > span:nth-child(2),
+.order-body .summary-item > span:last-child {
+  font-family: Noto Sans KR;
+  font-weight: bold;
+}
 .order-body .summary-item > span:last-child {
   text-align: right;
   justify-content: flex-end;
@@ -447,11 +458,11 @@ export default {
   margin-bottom: 42px;
 }
 .confirm-wrap p {
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 11px;
+  line-height: 9px;
   padding-left: 8px;
   padding-top: 8px;
 }
@@ -478,6 +489,16 @@ export default {
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
+}
+label.base-shipping{
+  min-width: 319px;
+  display: flex !important;
+  margin-left: 75px;
+}
+label.base-shipping > label > span{
+  margin-right: 10px;
+  display: block;
+  width: 319px;
 }
 @media (max-width: 980px) {
   .order{

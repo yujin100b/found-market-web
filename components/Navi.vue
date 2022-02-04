@@ -118,10 +118,11 @@ export default {
 }
   .navi .link-wrap button,
   .navi .link-wrap > a h1{
+    font-family: IM_Hyemin-Bold;
     background: none;
     border: none;
     font-size: 12px;
-    line-height: 15px;
+    line-height: 1;
   }
   .menu{
     display: none;
@@ -129,7 +130,7 @@ export default {
   .menu.active{
     display: block;
     position: absolute;
-    top: 67px;
+    top: 36px;
     left: 0;
     background: #FFD228;
     border-top: 2px solid #000;
@@ -142,5 +143,13 @@ export default {
   .navi .link-wrap .menu.active a > h1:hover{
     background: #fff;
   }
+  .navi .link-wrap > a:hover {
+  width: 60px;
+  height: 24px;
+  background: #ffffff;
+  border: 3px solid #000000;
+  box-sizing: border-box;
+  border-radius: 25px;
+}
 }
 </style>

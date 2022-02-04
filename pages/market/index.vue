@@ -3,8 +3,9 @@
     <Navi fixed />
     <div class="section found-market">
       <img class="section-header-img pc" src="/market_header.png" />
-      <img class="section-header-img mobile" src="/mobile_marke_header.png" />
+      <img class="section-header-img mobile" src="/mobile_marke_header.svg" />
       <div class="search-wrap">
+        <p>“전국 8도 로컬브랜드를 수집합니다!”</p>
         <input class="search" :v-model="search" />
       </div>
       <div class="products">
@@ -128,6 +129,15 @@ export default {
   display: flex;
   justify-content: flex-end;
   margin-top: 37px;
+  position: relative;
+}
+.found-market-list .search-wrap p{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: IM_Hyemin-Bold;
+  font-size: 20px;
 }
 .found-market-list .search {
   border: 2px solid #000000;
@@ -249,13 +259,27 @@ export default {
     grid-column-gap: 15px;
     grid-row-gap: 32px;
     grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 42px;
   }
   .found-market-list .search-wrap {
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+  }
+  .found-market-list .search-wrap p{
+    position: relative;
+    font-size: 14px;
+    text-align: center;
+    left: unset;
+    top: unset;
+    transform: unset;
+    padding: 20px 0;
   }
   .found-market-list .found-market .product .img-wrap {
     width: 150px;
     height: 150px;
+    border-radius: 10px;
   }
   .found-market-list .search{
     width: 226px;
@@ -265,6 +289,8 @@ export default {
   .found-market-list .found-market .product h3.title {
     font-size: 14px;
     line-height: 18px;
+    margin-top: 9px;
+    margin-bottom: 2px;
   }
   .found-market-list .found-market .product p.price{
     display: inline-block;

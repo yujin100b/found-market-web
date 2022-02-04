@@ -10,7 +10,7 @@
     <div class="about-body">
       <div class="section">
         <div class="about-row">
-          <img width="310" src="/about-found-market.png" />
+          <img c width="310" src="/about-found-market.png" />
           <p>
             FOUND MARKET(파운드마켓) 은 전국 8도 로컬 브랜드 큐레이션
             플랫폼입니다. ‘로컬 브랜드’를 발굴하고 경험하게 함으로써 지역별
@@ -26,7 +26,7 @@
         </div>
         <div class="about-row">
           <img class="pc" width="310" src="/about-lee.png" />
-          <img class="mobile" src="/mobile-about-lee.png" />
+          <img class="mobile" src="/mobile-about-lee.svg" />
           <p>
             더로컬프로젝트는 전국 8도 로컬 브랜드 큐레이션 플랫폼 FOUND MARKET을
             운영하는 로컬 농식품 스타트업입니다. 로컬의 자원을 발굴하고
@@ -45,7 +45,7 @@
           <p>다람쥐 사 이메일로 연락주세요!</p>
         </div>
         <div class="about-contact-namecard">
-          <img src="/about-contact.png" />
+          <img src="/about-contact.svg" />
           <h1> &#60;&#60; CONTACT &#62;&#62; </h1>
           <div class="info">
             <div class="info-wrap">
@@ -122,7 +122,7 @@ export default {
   padding-top: 82px;
 }
 .about-row p {
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-size: 18px;
   line-height: 30px;
   max-width: 620px;

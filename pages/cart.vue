@@ -7,7 +7,7 @@
         <table class="table is-fullwidth">
           <thead>
             <tr>
-              <th><input type="checkbox" /></th>
+              <th><check-box ref="confirmDoc" /></th>
               <th></th>
               <th>상품정보</th>
               <th>수량</th>
@@ -16,7 +16,7 @@
           </thead>
           <tbody>
             <tr class="cart-item" v-for="(item, index) in cart" :key="item.id">
-              <th><input type="checkbox" /></th>
+              <th><check-box ref="confirmDoc" /></th>
               <td class="img">
                 <div class="img-wrap">
                   <img :src="item.product.img" />
@@ -213,7 +213,7 @@ export default {
   color: #000000;
 }
 .summary p.price {
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 21px;
@@ -235,9 +235,9 @@ export default {
 .cart .table thead th {
   border: 0;
   text-align: center;
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-size: 18px;
-  line-height: 26px;
+  line-height: 22px;
   color: #000000;
   font-weight: 500;
 }
@@ -317,7 +317,7 @@ export default {
   border-radius: 15px;
   margin-right: 5px;
   text-align: center;
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -338,7 +338,7 @@ export default {
 }
 .cart .remove-buttons button {
   margin-left: 24px;
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;

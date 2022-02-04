@@ -114,7 +114,7 @@ export default {
   border: 0;
   box-sizing: border-box;
   border-radius: 10px;
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;

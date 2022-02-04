@@ -105,6 +105,7 @@ export default {};
     height: 100px;
     margin: 0 auto;
     padding: 9px;
+    border-radius: 15px;
   }
   .five .five-items .row .item:first-child{
     margin-left: 0;
@@ -122,7 +123,7 @@ export default {};
     font-size: 11px;
     line-height: 21px;
     background-size: 114px;
-    margin-bottom: 13px;
+    margin-bottom: 6px;
   }
   .five .five-items .item p{
     font-family: "Noto Sans KR";

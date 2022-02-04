@@ -30,12 +30,38 @@
           </div>
           <div class="button-wrap">
             <div class="share-wrap pc">
-              <img class="share" src="/share.svg">
+              <img class="share" src="/share.svg" />
             </div>
             <div class="cart-button">
-              <button @click="minus">-</button>
+              <button @click="minus">
+                <svg
+                  width="7"
+                  height="4"
+                  viewBox="0 0 7 4"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.399414 3.03208V0.0800781H6.56741V3.03208H0.399414Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
               <input type="number" v-model="amount" />
-              <button @click="plus">+</button>
+              <button @click="plus">
+                <svg
+                  width="11"
+                  height="10"
+                  viewBox="0 0 11 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.55867 3.88H10.0587V6.02H6.55867V9.76H4.41867V6.02H0.918672V3.88H4.41867V0.0999994H6.55867V3.88Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
               <button class="addcart">장바구니에 담기</button>
             </div>
             <div class="pay-button">
@@ -89,15 +115,15 @@
     <Review />
     <Footer />
     <div class="nav-btn pc">
-        <div>상품설명</div>
-        <div class="yellow">후기</div>
+      <div>상품설명</div>
+      <div class="yellow">후기</div>
     </div>
   </div>
 </template>
 
 <script>
-import DetailFive from '../../components/DetailFive.vue';
-import Review from '../../components/Review.vue';
+import DetailFive from "../../components/DetailFive.vue";
+import Review from "../../components/Review.vue";
 export default {
   components: { DetailFive, Review },
   data() {
@@ -132,25 +158,25 @@ export default {
     goToFarmList() {
       this.$router.push("/farm");
     },
-    plus(){
-      this.amount = this.amount+1
+    plus() {
+      this.amount = this.amount + 1;
     },
-    minus(){
-      if (this.amount-1 < 1 ){
-        alert("최소 1개 이상의 상품을 구매할 수 있습니다. ")
-        return
+    minus() {
+      if (this.amount - 1 < 1) {
+        alert("최소 1개 이상의 상품을 구매할 수 있습니다. ");
+        return;
       }
-      this.amount = this.amount-1
+      this.amount = this.amount - 1;
     },
-    get_farm_one(){
-      this.$store.dispatch('get_farm_one', this.id).then(res =>{
-        this.product = res.data
-      })
-    }
+    get_farm_one() {
+      this.$store.dispatch("get_farm_one", this.id).then((res) => {
+        this.product = res.data;
+      });
+    },
   },
-  created(){
-    this.get_farm_one()
-  }
+  created() {
+    this.get_farm_one();
+  },
 };
 </script>
 
@@ -164,7 +190,7 @@ export default {
 }
 .breadcrum {
   font-family: IM_Hyemin-Bold;
-   margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 .breadcrum span {
   border-bottom: 1px solid #000;
@@ -225,24 +251,25 @@ export default {
   justify-content: space-between;
   padding-left: 36px;
 }
-.detail .shorts .share-wrap{
+.detail .shorts .share-wrap {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 11px;
+  margin-bottom: 40px;
+  margin-right: 19px;
 }
 .detail .shorts .button-wrap {
   display: flex;
   flex-direction: column;
 }
-.detail .shorts .button-wrap .share{
+.detail .shorts .button-wrap .share {
   width: 44px;
   height: 40.43px;
 }
 .detail .shorts .cart-button {
   display: flex;
-  margin-bottom: 11px;;
+  margin-bottom: 11px;
 }
-.detail .shorts .cart-button button{
+.detail .shorts .cart-button button {
   background: #ffffff;
   border: 2px solid #000000;
   box-sizing: border-box;
@@ -251,10 +278,15 @@ export default {
   margin-right: 5px;
   font-size: 20px;
   font-weight: 600;
+  font-family: "Noto Sans KR";
 }
-.detail .shorts .cart-button button:not(.addcart){
+.detail .shorts .cart-button button:not(.addcart) {
+  font-family: "Noto Sans KR";
   min-width: 57px;
   height: 58px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .detail .shorts .cart-button input {
   background: #ffffff;
@@ -263,7 +295,7 @@ export default {
   border-radius: 15px;
   margin-right: 5px;
   text-align: center;
-  font-family: Roboto;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -297,10 +329,9 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
-
-  color: #FFFFFF;
+  color: #ffffff;
 }
-.detail .shorts .pay-button button span{
+.detail .shorts .pay-button button span {
   padding-left: 0.5em;
 }
 .detail .contents-info {
@@ -331,12 +362,12 @@ export default {
 .detail .info-item > p:first-of-type {
   font-weight: bold;
 }
-.nav-btn{
+.nav-btn {
   position: fixed;
   top: 30%;
-  right: 0
+  right: 0;
 }
-.nav-btn div{
+.nav-btn div {
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -345,16 +376,16 @@ export default {
   height: 50px;
   font-size: 14px;
   line-height: 13px;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 2px solid #000000;
   border-bottom: 1px solid #000000;
 }
-.nav-btn div.yellow{
+.nav-btn div.yellow {
   border: 2px solid #000000;
   border-top: 1px solid #000000;
   display: flex;
   align-items: center;
-  background: #FFD228;
+  background: #ffd228;
 }
 @media (max-width: 980px) {
   .detail-body {
@@ -377,7 +408,7 @@ export default {
   .detail .shorts {
     flex-direction: column;
     justify-content: center;
-    width:315px;
+    width: 315px;
     margin: 0 auto;
     padding-bottom: 65px;
   }
@@ -406,7 +437,8 @@ export default {
   .detail .shorts .share-wrap {
     margin-bottom: 0;
     display: inline-flex;
-    margin-left: 65px;
+    margin-left: 64px;
+    justify-content: unset;
   }
   .detail .shorts .share-wrap img {
     width: 23.32px;

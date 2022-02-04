@@ -29,6 +29,7 @@ span {
   height: 24px;
   box-sizing: border-box;
   position: relative;
+  background: #fff;
 }
 input[type="checkbox"]:checked ~ span {
   background: #ffd228;

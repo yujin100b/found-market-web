@@ -1,7 +1,7 @@
 <template>
   <div class="section found-market">
     <img class="section-header-img pc" src="/market_header.png" />
-     <img class="section-header-img mobile" src="/mobile_marke_header.png" />
+     <img class="section-header-img mobile" src="/mobile_marke_header.svg" />
     <!-- <p>좋은 원료만을 사용해요.</p> 
     
     -->
@@ -184,6 +184,7 @@ export default {
   .found-market .product .img-wrap{
     width: 150px;
     height: 150px;
+    border-radius: 10px;
   }
   .new-mark {
     width: 30px;
@@ -196,6 +197,8 @@ export default {
   .found-market .product h3.title {
     font-size: 14px;
     line-height: 18px;
+    margin-top: 9px;
+    margin-bottom: 2px;
   }
   .found-market .product p.price{
     font-size: 14px;

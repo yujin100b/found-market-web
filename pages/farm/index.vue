@@ -3,8 +3,9 @@
   <Navi fixed/>
   <div class="section found-farm">
     <img class="section-header-img pc" src="/farm_header.png" />
-    <img class="section-header-img mobile" src="/mobile_farm_header.png" />
+    <img class="section-header-img mobile" src="/mobile_farm_header.svg" />
     <div class="search-wrap">
+      <p>“전국 8도 로컬브랜드를 수집합니다!”</p>
       <input class="search" :v-model="search" />
     </div>
     <div class="products">
@@ -90,7 +91,17 @@ export default {
   display: flex;
   justify-content: flex-end;
   margin-top: 37px;
+    position: relative;
 }
+.found-farm-list .search-wrap p{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: IM_Hyemin-Bold;
+  font-size: 20px;
+}
+
 .found-farm-list .search{
   border: 2px solid #000000;
   box-sizing: border-box;
@@ -176,13 +187,14 @@ export default {
   color: #000;
 }
 .found-farm-list .found-farm .product .sub{
-  font-family: "IM_Hyemin-Regular";
+  font-family: "IM_Hyemin-Bold";
   font-size: 22px;
   line-height: 27px;
   text-align: center;
   letter-spacing: -0.015em;
   width: 100%;
   margin: 18px auto;
+  margin-bottom: 8px;
 }
 .found-farm-list .found-farm .product p.desc {
   font-family: "Noto Sans KR";
@@ -191,7 +203,7 @@ export default {
   line-height: 1.6;
   display: flex;
   align-items: center;
-  text-align: justify;
+  text-align: center;
   letter-spacing: -0.015em;
   text-decoration-line: underline;
 }
@@ -204,27 +216,45 @@ export default {
   font-family: IM_Hyemin-Bold;
   font-size: 20px;
   line-height: 24px;
-  border: 3px solid #000000;
+  border: 2px solid #000000;
   box-sizing: border-box;
   border-radius: 25px;
 }
 @media (max-width: 980px){
+  .section-header-img{
+    margin: 0 auto;
+    display: block;
+  }
   .found-farm-list .search-wrap{
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+  }
+  .found-farm-list .search-wrap p{
+    position: relative;
+    font-size: 14px;
+    text-align: center;
+    left: unset;
+    top: unset;
+    transform: unset;
+    padding: 20px 0;
   }
   .found-farm-list .search {
       width: 226px;
       height: 34px;
       background-size: 15.59px;
   }
+  
   .found-farm-list .found-farm .products{
     grid-row-gap: 80px;
     grid-template-columns: 1fr;
     margin-bottom: 16px;
   }
   .found-farm-list .found-farm .product .img-wrap {
-    width: 274px;
-    height: 274px;
+    width: 270px;
+    height: 270px;
+    border-radius: 10px;
 }
 .found-farm-list .found-farm .more{
     width: 60px;

@@ -127,7 +127,7 @@ table thead th {
   border-bottom: 1px solid #000;
 }
 .success td p {
-  font-family: Roboto;
+  font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 22px;

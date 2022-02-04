@@ -33,9 +33,35 @@
               <img class="share" src="/share.svg" />
             </div>
             <div class="cart-button">
-              <button @click="minus">-</button>
+              <button @click="minus">
+                <svg
+                  width="7"
+                  height="4"
+                  viewBox="0 0 7 4"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.399414 3.03208V0.0800781H6.56741V3.03208H0.399414Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
               <input type="number" v-model="amount" />
-              <button @click="plus">+</button>
+              <button @click="plus">
+                <svg
+                  width="11"
+                  height="10"
+                  viewBox="0 0 11 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.55867 3.88H10.0587V6.02H6.55867V9.76H4.41867V6.02H0.918672V3.88H4.41867V0.0999994H6.55867V3.88Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
               <button class="addcart">장바구니에 담기</button>
             </div>
             <div class="pay-button">
@@ -229,7 +255,8 @@ export default {
 .detail .shorts .share-wrap {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 11px;
+  margin-bottom: 40px;
+  margin-right: 19px;
 }
 .detail .shorts .button-wrap {
   display: flex;
@@ -252,10 +279,15 @@ export default {
   margin-right: 5px;
   font-size: 20px;
   font-weight: 600;
+  font-family: "Noto Sans KR";
 }
 .detail .shorts .cart-button button:not(.addcart) {
+  font-family: "Noto Sans KR";
   min-width: 57px;
   height: 58px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .detail .shorts .cart-button input {
   background: #ffffff;
@@ -264,7 +296,7 @@ export default {
   border-radius: 15px;
   margin-right: 5px;
   text-align: center;
-  font-family: Roboto;
+  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -378,7 +410,7 @@ export default {
   .detail .shorts {
     flex-direction: column;
     justify-content: center;
-    width:315px;
+    width: 315px;
     margin: 0 auto;
     padding-bottom: 65px;
   }
@@ -407,7 +439,8 @@ export default {
   .detail .shorts .share-wrap {
     margin-bottom: 0;
     display: inline-flex;
-    margin-left: 65px;
+    margin-left: 64px;
+    justify-content: unset;
   }
   .detail .shorts .share-wrap img {
     width: 23.32px;

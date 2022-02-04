@@ -1,7 +1,7 @@
 <template>
   <div class="section found-farm">
     <img class="section-header-img pc" src="/farm_header.png" />
-    <img class="section-header-img mobile" src="/mobile_farm_header.png" />
+    <img class="section-header-img mobile" src="/mobile_farm_header.svg" />
     <!-- <p>좋은 원료만을 사용해요.</p> -->
     <div class="products">
       <div class="product" v-for="product in products" :key="product.id">
@@ -110,23 +110,24 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   font-family: IM_Hyemin-Bold;
-  font-size: 30px;
+  font-size: 23px;
   line-height: 72px;
   text-align: center;
-  background-image: url('/farm_item_header.svg');
+  background-image: url('/main_farm_item_header.svg');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   color: #000;
 }
 .found-farm .product .sub{
-  font-family: "IM_Hyemin-Regular";
+  font-family: "IM_Hyemin-Bold";
   font-size: 30px;
   line-height: 37px;
   text-align: center;
   letter-spacing: -0.015em;
   width: 100%;
   margin: 18px auto;
+  margin-bottom: 8px;
 }
 .found-farm .product p.desc {
   font-family: "Noto Sans KR";
@@ -156,10 +157,11 @@ export default {
 @media(max-width: 980px){
   .found-farm.section{
     padding-top: 0;
+    padding-bottom: 80px;
   }
   .found-farm .product .img-wrap {
-    width: 274px;
-    height: 274px;
+    width: 270px;
+    height: 270px;
   }
   .found-farm .products{
     grid-template-columns: 1fr;
@@ -173,12 +175,13 @@ export default {
   }
   .found-farm .product > h3.title{
     font-size: 14px;
-    
+    background-image: url('/mobile-farm-item-header.svg');
   }
   .found-farm .product .sub{
-    margin: 11px auto;
+    margin: 18px auto;
     font-size: 20px;
     line-height: 24px;
+    margin-bottom: 8px;
   }
   .found-farm .product p.desc{
     font-size: 14px;
