@@ -4,7 +4,7 @@
     <Navi :fixed="fixed" ref="navi" />
     <Carousel />
     <IndexMarket />
-    <img class="main-banner-img" src="/main_banner.png" />
+    <img class="main-banner-img" src="/main_banner.png" @click="goTolocal" />
     <IndexFarm />
     <IndexLocalNews />
     <Footer />
@@ -56,6 +56,9 @@ export default {
           this.timer = null
         }.bind(this), 200)
       }
+    },
+    goTolocal(){
+      this.$router.push("/local")
     }
   }
 };
@@ -72,6 +75,7 @@ export default {
 .main-banner-img{
   width: 100%;
   margin: -7px auto;
+  cursor: pointer;
 }
 .section .section-header-img {
   margin: 0 auto;

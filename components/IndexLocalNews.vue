@@ -1,7 +1,10 @@
 <template>
   <div class="local-news">
     <div class="section">
-      <h2>더 로컬 프로젝트 소식이 <br> 궁금하시다면?</h2>
+      <h2>
+        더 로컬 프로젝트 소식이 <br />
+        궁금하시다면?
+      </h2>
       <div class="local-news-header">THE LOCAL NEWS</div>
       <div class="local-news-section">
         <div
@@ -95,64 +98,74 @@ export default {
       ],
     };
   },
-  computed:{
-    one(){
+  computed: {
+    one() {
       return this.news.slice(0, 2);
     },
-    two(){
+    two() {
       return this.news.slice(2);
-    }
+    },
   },
   methods: {
     openInNewTab(url) {
       window.open(url, "_blank").focus();
     },
-    clampText(text){
-      if (text.length > 100){
-        return text.slice(0, 100) + "..."
+    clampText(text) {
+      if (text.length > 100) {
+        return text.slice(0, 100) + "...";
       }
-      return text
-    }
+      return text;
+    },
+    getMainNews() {
+      this.$store.dispatch("get_main_news").then((res) => {
+        if (res.data.length) {
+          this.news = res.data;
+        }
+      });
+    },
+  },
+  mounted() {
+    this.getMainNews();
   },
 };
 </script>
 
 <style>
-.local-news{
+.local-news {
   border-top: 2px solid #000;
   background: rgba(255, 210, 40, 0.2);
 }
-.local-news div.section{
-    padding: 50px 0;
-    padding-bottom: 162px;
+.local-news div.section {
+  padding: 50px 0;
+  padding-bottom: 162px;
 }
-.local-news h2{
-    font-family: IM_Hyemin-Bold;
-    font-size: 30px;
-    color: #000;
-    text-align: center;
-    margin-bottom: 50px;
+.local-news h2 {
+  font-family: IM_Hyemin-Bold;
+  font-size: 30px;
+  color: #000;
+  text-align: center;
+  margin-bottom: 50px;
 }
-.local-news-header{
-    font-size: 60px;
-    font-family: IM_Hyemin-Bold;
-    text-align: center;
-    border-top: 6px solid #000;
-    border-bottom: 6px solid #000;
-    margin-bottom: 50px;
+.local-news-header {
+  font-size: 60px;
+  font-family: IM_Hyemin-Bold;
+  text-align: center;
+  border-top: 6px solid #000;
+  border-bottom: 6px solid #000;
+  margin-bottom: 50px;
 }
-.local-news-section{
-   display: flex;
-   padding-bottom: 21px;
-   border-bottom: 1px solid #000;
+.local-news-section {
+  display: flex;
+  padding-bottom: 21px;
+  border-bottom: 1px solid #000;
 }
-.local-news-section:last-child{
+.local-news-section:last-child {
   padding-top: 21px;
 }
-.local-news-item{
+.local-news-item {
   display: flex;
 }
-.local-news-item .img-wrap{
+.local-news-item .img-wrap {
   width: 200px;
   height: 200px;
   border: 3px solid #000000;
@@ -160,55 +173,55 @@ export default {
   border-radius: 25px;
   overflow: hidden;
 }
-.local-news-item .img-wrap img{
+.local-news-item .img-wrap img {
   height: 100%;
   width: 120%;
-  max-width: unset
+  max-width: unset;
 }
-.local-news-item .text-wrap{
+.local-news-item .text-wrap {
   width: 300px;
   padding: 8px 19px;
 }
-.local-news-item .text-wrap .title{
+.local-news-item .text-wrap .title {
   font-family: "Noto Sans KR";
   font-size: 20px;
   line-height: 27px;
   margin-bottom: 8px;
 }
-.local-news-item:hover .text-wrap .title{
+.local-news-item:hover .text-wrap .title {
   text-decoration: underline;
 }
-.local-news-item .text-wrap .short{
+.local-news-item .text-wrap .short {
   font-family: "Noto Sans KR";
   font-size: 15px;
   line-height: 20px;
   padding-bottom: 1em;
 }
-.local-news-item .text-wrap .post-info{
+.local-news-item .text-wrap .post-info {
   font-family: "Noto Sans KR";
   font-size: 12px;
   line-height: 14px;
   letter-spacing: -0.015em;
   color: rgba(0, 0, 0, 0.3);
 }
-.local-news-item .text-wrap .post-info span{
+.local-news-item .text-wrap .post-info span {
   color: rgba(0, 0, 0, 0.7);
   padding-right: 8px;
 }
 @media (max-width: 980px) {
-  .local-news-section{
+  .local-news-section {
     flex-direction: column;
   }
-  .local-news div.section{
-    padding-top:10px;
+  .local-news div.section {
+    padding-top: 10px;
     padding-bottom: 32px;
   }
-  .local-news h2{
+  .local-news h2 {
     font-size: 17px;
     line-height: 23px;
     margin-bottom: 10px;
   }
-  .local-news-header{
+  .local-news-header {
     font-size: 22px;
     padding: 12px 0;
     border-top: 2px solid #000000;
@@ -216,37 +229,37 @@ export default {
     border-radius: 1px;
     margin-bottom: 11px;
   }
-  .local-news-section:last-child{
+  .local-news-section:last-child {
     padding-top: 11px;
   }
-  .local-news-section{
+  .local-news-section {
     padding-bottom: 11px;
   }
-  .local-news-section .local-news-item:first-child{
+  .local-news-section .local-news-item:first-child {
     border-bottom: 1px solid #000000;
     padding-bottom: 11px;
   }
   .local-news-section .local-news-item:last-child {
     padding-top: 11px;
-}
+  }
   .local-news-item .img-wrap {
     width: 100px;
     height: 100px;
     border-radius: 10px;
   }
-  .local-news-item .text-wrap{
+  .local-news-item .text-wrap {
     width: 208px;
     padding-right: 0;
     padding-bottom: 0;
-    padding-top:0;
+    padding-top: 0;
   }
   .local-news-item .text-wrap .title {
     font-size: 10px;
     line-height: 14px;
   }
-  .local-news-item .text-wrap .short{
+  .local-news-item .text-wrap .short {
     font-size: 10px;
-  line-height: 14px;
-  } 
+    line-height: 14px;
+  }
 }
 </style>

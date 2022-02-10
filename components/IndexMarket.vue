@@ -1,12 +1,17 @@
 <template>
   <div class="section found-market">
     <img class="section-header-img pc" src="/market_header.png" />
-     <img class="section-header-img mobile" src="/mobile_marke_header.svg" />
+    <img class="section-header-img mobile" src="/mobile_marke_header.svg" />
     <!-- <p>좋은 원료만을 사용해요.</p> 
     
     -->
     <div class="products">
-      <div class="product" v-for="product in products" :key="product.id">
+      <div
+        class="product"
+        v-for="product in products"
+        :key="product.id"
+        @click="goToMarketDetail(product.id)"
+      >
         <div class="img-wrap">
           <img :src="product.thumbnail" />
           <div v-if="product.new" class="new-mark">NEW</div>
@@ -79,22 +84,24 @@ export default {
       ],
     };
   },
-  methods:{
+  methods: {
     getMainMarket() {
       this.$store.dispatch("get_main_market").then((res) => {
         if (res.data.length) {
-          this.products = res.data
+          this.products = res.data;
         }
       });
     },
-    goToMarket(){
-      this.$router.push("/market")
-    }
+    goToMarket() {
+      this.$router.push("/market");
+    },
+    goToMarketDetail(id) {
+      this.$router.push(`/market/${id}`);
+    },
   },
-  mounted(){
-    this.getMainMarket()
-  }
-
+  mounted() {
+    this.getMainMarket();
+  },
 };
 </script>
 
@@ -107,7 +114,7 @@ export default {
   font-family: IM_Hyemin-Bold;
   padding: 32px 0;
 } */
-.section.found-market{
+.section.found-market {
   padding-top: 0;
 }
 .found-market .products {
@@ -190,14 +197,14 @@ export default {
   color: rgba(0, 0, 0, 0.8);
 }
 
-@media (max-width:980px) {
-  .found-market .products{
+@media (max-width: 980px) {
+  .found-market .products {
     grid-column-gap: 15px;
     grid-row-gap: 33px;
     margin-top: 50px;
     margin-bottom: 66px;
   }
-  .found-market .product .img-wrap{
+  .found-market .product .img-wrap {
     width: 150px;
     height: 150px;
     border-radius: 10px;
@@ -216,7 +223,7 @@ export default {
     margin-top: 9px;
     margin-bottom: 2px;
   }
-  .found-market .product p.price{
+  .found-market .product p.price {
     font-size: 14px;
     line-height: 19px;
     margin-bottom: 0px;
@@ -227,9 +234,8 @@ export default {
     line-height: 14px;
     display: inline-block;
   }
-  .found-market .product p.desc{
+  .found-market .product p.desc {
     display: none;
   }
 }
-
 </style>
