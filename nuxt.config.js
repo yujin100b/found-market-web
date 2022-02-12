@@ -58,6 +58,10 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    ['nuxt-vuex-localstorage', {
+      mode: 'debug',
+      localStorage: ['localStorage']
+    }]
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

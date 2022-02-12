@@ -6,17 +6,17 @@
       <img class="section-header-img mobile" src="/mobile_marke_header.svg" />
       <div class="search-wrap">
         <p>“전국 8도 로컬브랜드를 수집합니다!”</p>
-        <input class="search" :v-model="search" />
+        <input class="search" v-model="search" />
       </div>
-      <div class="products">
+      <div class="products"  v-if="filtered.length > 0">
         <div
           class="product"
-          v-for="product in products"
+          v-for="product in filtered"
           :key="product.id"
           @click="goToDetail(product)"
         >
           <div class="img-wrap" :class="product.out ? 'out' : ''">
-            <img :src="product.img" />
+            <img :src="product.thumbnail" />
             <div v-if="product.new" class="new-mark">NEW</div>
             <div v-if="product.out" class="outofstock">
               상품 준비 중 입니다.
@@ -40,6 +40,9 @@
           </div>
         </div>
       </div>
+      <div v-else class="products">
+        <p>"{{ this.search }}" 에 대한 상품 결과가 없습니다.</p>
+      </div>
       <button class="normal-btn">더 보기</button>
 
     </div>
@@ -55,7 +58,7 @@ export default {
       products: [
         {
           id: 1,
-          img: "/slide1.jpg",
+          thumbnail: "/slide1.jpg",
           title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
           desc: "제주산 100% 고품질 찻잎만 담았어요",
           price: 10000,
@@ -66,7 +69,7 @@ export default {
         },
         {
           id: 2,
-          img: "/slide2.jpg",
+          thumbnail: "/slide2.jpg",
           title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
           desc: "제주산 100% 고품질 찻잎만 담았어요",
           price: 9000,
@@ -77,7 +80,7 @@ export default {
         },
         {
           id: 3,
-          img: "/slide3.jpg",
+          thumbnail: "/slide3.jpg",
           title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
           desc: "제주산 100% 고품질 찻잎만 담았어요",
           price: 9000,
@@ -88,7 +91,7 @@ export default {
         },
         {
           id: 4,
-          img: "/slide1.jpg",
+          thumbnail: "/slide1.jpg",
           title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
           desc: "제주산 100% 고품질 찻잎만 담았어요",
           price: 9000,
@@ -100,7 +103,22 @@ export default {
       ],
     };
   },
+  computed:{
+    filtered(){
+      if (this.search.length){
+        return this.products.filter(({title}) => title.indexOf(this.search) !== -1 )
+      }
+      return this.products
+    }
+  },
   methods: {
+    getMarket() {
+      this.$store.dispatch("get_market").then((res) => {
+        if (res.data.length) {
+          this.products = res.data;
+        }
+      });
+    },
     goToDetail(product) {
       if (product.out) {
         alert("상품 준비 중 입니다. 조금만 기다려주세요!")
@@ -109,6 +127,9 @@ export default {
       this.$router.push(`/market/${product.id}`);
     },
   },
+  mounted(){
+    this.getMarket()
+  }
 };
 </script>
 

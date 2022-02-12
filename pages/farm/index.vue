@@ -1,33 +1,41 @@
 <template>
-<div class="found-farm-list">
-  <Navi fixed/>
-  <div class="section found-farm">
-    <img class="section-header-img pc" src="/farm_header.png" />
-    <img class="section-header-img mobile" src="/mobile_farm_header.svg" />
-    <div class="search-wrap">
-      <p>“전국 8도 로컬브랜드를 수집합니다!”</p>
-      <input class="search" :v-model="search" />
-    </div>
-    <div class="products">
-      <div class="product" v-for="product in products" :key="product.id">
-        <h3 class="title">{{ product.title }}</h3>
-        <div class="img-wrap" :class="product.out ? 'out' : ''">
-          <img :src="product.img" />
-          <div v-if="product.out" class="outofstock">
+  <div class="found-farm-list">
+    <Navi fixed />
+    <div class="section found-farm">
+      <img class="section-header-img pc" src="/farm_header.png" />
+      <img class="section-header-img mobile" src="/mobile_farm_header.svg" />
+      <div class="search-wrap">
+        <p>“전국 8도 로컬브랜드를 수집합니다!”</p>
+        <input class="search" v-model="search" />
+      </div>
+      <div class="products" v-if="filtered.length > 0">
+        <div
+          class="product"
+          v-for="product in filtered"
+          :key="product.id"
+          @click="goToFarmDetail(product)"
+        >
+          <h3 class="title">{{ product.title }}</h3>
+          <div class="img-wrap" :class="product.out ? 'out' : ''">
+            <img :src="product.thumbnail" />
+            <div v-if="product.out" class="outofstock">
               상품 준비 중 입니다.
             </div>
-        </div>
-        <div class="product-info">
-          <h3 class="title sub">"{{ product.sub_title }}"</h3>
-          <p class="desc">{{ product.desc }}</p>
-          <p></p>
+          </div>
+          <div class="product-info">
+            <h3 class="title sub">"{{ product.sub_title }}"</h3>
+            <p class="desc">{{ product.desc }}</p>
+            <p></p>
+          </div>
         </div>
       </div>
+      <div v-else class="products">
+        <p>"{{ this.search }}" 에 대한 상품 결과가 없습니다.</p>
+      </div>
+      <button class="more">더 보기</button>
     </div>
-    <button class="more">더 보기</button>
+    <Footer />
   </div>
-  <Footer />
-</div>
 </template>
 
 <script>
@@ -38,39 +46,66 @@ export default {
       products: [
         {
           id: 1,
-          img: "/slide1.jpg",
+          thumbnail: "/slide1.jpg",
           title: "가나안 농장의 ‘샤인머스캣’",
           sub_title: "눈부시게 맛있어요",
           desc: "가나안 농장은 1980년 부터 강원도 인제에서 2대째 물려오고 있는 샤인머스캣 농장으로 2019년 부터 더로컬프로젝트와 협업하여 눈부시게 맛있는 과일이라는 주제로 다양한 머스캣 테마 음료들을 준비하고 있습니다...",
-          out: false
+          out: false,
         },
         {
           id: 2,
-          img: "/slide2.jpg",
+          thumbnail: "/slide2.jpg",
           title: "가나안 농장의 ‘샤인머스캣’",
           sub_title: "눈부시게 맛있어요",
           desc: "가나안 농장은 1980년 부터 강원도 인제에서 2대째 물려오고 있는 샤인머스캣 농장으로 2019년 부터 더로컬프로젝트와 협업하여 눈부시게 맛있는 과일이라는 주제로 다양한 머스캣 테마 음료들을 준비하고 있습니다...",
-          out: false
+          out: false,
         },
         {
           id: 3,
-          img: "/slide3.jpg",
+          thumbnail: "/slide3.jpg",
           title: "가나안 농장의 ‘샤인머스캣’",
           sub_title: "눈부시게 맛있어요",
           desc: "가나안 농장은 1980년 부터 강원도 인제에서 2대째 물려오고 있는 샤인머스캣 농장으로 2019년 부터 더로컬프로젝트와 협업하여 눈부시게 맛있는 과일이라는 주제로 다양한 머스캣 테마 음료들을 준비하고 있습니다...",
-          out: false
+          out: false,
         },
         {
           id: 4,
-          img: "/slide1.jpg",
+          thumbnail: "/slide1.jpg",
           title: "가나안 농장의 ‘샤인머스캣’",
           sub_title: "눈부시게 맛있어요",
           desc: "가나안 농장은 1980년 부터 강원도 인제에서 2대째 물려오고 있는 샤인머스캣 농장으로 2019년 부터 더로컬프로젝트와 협업하여 눈부시게 맛있는 과일이라는 주제로 다양한 머스캣 테마 음료들을 준비하고 있습니다...",
-          out: true
+          out: true,
         },
       ],
     };
   },
+  computed:{
+    filtered(){
+      if (this.search.length){
+        return this.products.filter(({title}) => title.indexOf(this.search) !== -1 )
+      }
+      return this.products
+    }
+  },
+  methods: {
+    getFarm() {
+      this.$store.dispatch("get_farm").then((res) => {
+        if (res.data.length) {
+          this.products = res.data;
+        }
+      });
+    },
+    goToFarmDetail(product) {
+      if (product.out) {
+        alert("상품 준비 중 입니다. 조금만 기다려주세요!")
+        return;
+      }
+      this.$router.push(`/farm/${product.id}`);
+    },
+  },
+  mounted(){
+    this.getFarm()
+  }
 };
 </script>
 
@@ -83,20 +118,20 @@ export default {
   font-family: IM_Hyemin-Bold;
   padding: 32px 0;
 } */
-.found-farm{
-  padding-top:120px
+.found-farm {
+  padding-top: 120px;
 }
-.found-farm-list{
+.found-farm-list {
   padding-top: 80px;
 }
-.found-farm-list .search-wrap{
+.found-farm-list .search-wrap {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-top: 37px;
-    position: relative;
+  position: relative;
 }
-.found-farm-list .search-wrap p{
+.found-farm-list .search-wrap p {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -105,11 +140,11 @@ export default {
   font-size: 20px;
 }
 
-.found-farm-list .search{
+.found-farm-list .search {
   border: 2px solid #000000;
   box-sizing: border-box;
   border-radius: 25px;
-  background: url('/search.svg');
+  background: url("/search.svg");
   background-position-x: 20px;
   background-position-y: center;
   background-repeat: no-repeat;
@@ -127,7 +162,7 @@ export default {
   margin-top: 76px;
   margin-bottom: 113px;
 }
-.found-farm-list .found-farm .product{
+.found-farm-list .found-farm .product {
   border: 2px solid #000000;
   box-sizing: border-box;
   border-radius: 25px;
@@ -183,13 +218,13 @@ export default {
   font-size: 15px;
   line-height: 72px;
   text-align: center;
-  background-image: url('/farm_item_header.svg');
+  background-image: url("/farm_item_header.svg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   color: #000;
 }
-.found-farm-list .found-farm .product .sub{
+.found-farm-list .found-farm .product .sub {
   font-family: "IM_Hyemin-Bold";
   font-size: 22px;
   line-height: 27px;
@@ -223,18 +258,18 @@ export default {
   box-sizing: border-box;
   border-radius: 25px;
 }
-@media (max-width: 980px){
-  .section-header-img{
+@media (max-width: 980px) {
+  .section-header-img {
     margin: 0 auto;
     display: block;
   }
-  .found-farm-list .search-wrap{
+  .found-farm-list .search-wrap {
     justify-content: center;
     flex-direction: column;
     align-items: center;
     margin-top: 0;
   }
-  .found-farm-list .search-wrap p{
+  .found-farm-list .search-wrap p {
     position: relative;
     font-size: 14px;
     text-align: center;
@@ -244,12 +279,12 @@ export default {
     padding: 20px 0;
   }
   .found-farm-list .search {
-      width: 226px;
-      height: 34px;
-      background-size: 15.59px;
+    width: 226px;
+    height: 34px;
+    background-size: 15.59px;
   }
-  
-  .found-farm-list .found-farm .products{
+
+  .found-farm-list .found-farm .products {
     grid-row-gap: 80px;
     grid-template-columns: 1fr;
     margin-bottom: 16px;
@@ -258,8 +293,8 @@ export default {
     width: 270px;
     height: 270px;
     border-radius: 10px;
-}
-.found-farm-list .found-farm .more{
+  }
+  .found-farm-list .found-farm .more {
     width: 60px;
     height: 20px;
     font-size: 10px;

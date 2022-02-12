@@ -40,7 +40,7 @@ export default {
   data(){
     return {
       toggle: false,
-      token : this.$store.state.token
+      token : this.$store.state.localStorage.token
     }
   }
   

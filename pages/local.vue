@@ -1,6 +1,6 @@
 <template>
   <div class="local">
-    <Navi fixed/>
+    <Navi fixed />
     <div class="section">
       <img class="header pc" src="/found-local-header.png" />
       <img class="header mobile" src="/mobile-local-header.svg" />
@@ -87,14 +87,26 @@ export default {
   computed: {
     payload() {
       return this.forms.reduce(
-        (prev, curr) => ({ ...prev, [curr.attr]: curr.answer }),
+        (prev, curr) => ({ ...prev, [curr.attr]: curr.answer.trim() }),
         {}
       );
     },
   },
   methods: {
     send() {
-      console.log("send")
+      this.$store
+        .dispatch("post_contact", this.payload)
+        .then((res) => {
+          if (res.status == 201) {
+            alert("작성하신 글이 전송되었습니다. ");
+          }
+        })
+        .catch((err) => this.errorHandler(err));
+    },
+    errorHandler(err) {
+      if (err.response.status == 400) {
+        alert("모든 내용을 작성해주세요.");
+      }
     },
   },
 };
@@ -102,7 +114,7 @@ export default {
 
 
 <style>
-.local{
+.local {
   padding-top: 120px;
 }
 .local img.header {
@@ -164,34 +176,34 @@ export default {
 .local .send-form-btn {
   margin-bottom: 163px;
 }
-@media (max-width:980px) {
+@media (max-width: 980px) {
   .local img.header {
     width: 100%;
     margin-bottom: 63px;
   }
-  .local .section h1{
+  .local .section h1 {
     font-size: 22px;
     line-height: 26px;
   }
-  .local p.header-text{
+  .local p.header-text {
     font-size: 14px;
     line-height: 26px;
   }
   .local .form-header {
     margin-bottom: 39px;
   }
-  .local .form .question{
+  .local .form .question {
     font-size: 14px;
     line-height: 17px;
   }
   .local .form textarea {
     border: 1px solid #000000;
-  } 
-  .local .closing-text{
+  }
+  .local .closing-text {
     font-size: 12px;
     line-height: 18px;
   }
-  .normal-btn{
+  .normal-btn {
     font-size: 10px;
     line-height: 12px;
     padding: 4px 14px;

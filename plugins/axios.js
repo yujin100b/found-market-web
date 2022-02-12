@@ -1,7 +1,7 @@
 export default function({ $axios, $store, redirect }) {
   
   $axios.onRequest((config) => {
-    config.baseURL = "http://localhost:8001/api"
+    config.baseURL = "http://localhost:8000/api"
     config.headers.common["Content-Type"] = "application/json";
     config.xsrfCookieName = "csrftoken";
     config.xsrfHeaderName = "X-CSRFToken";
@@ -11,8 +11,8 @@ export default function({ $axios, $store, redirect }) {
 
   $axios.onError((error) => {
     const code = parseInt(error.response && error.response.status);
-    if (code === 400) {
-      redirect("/login");
-    }
+    // if (code === 400) {
+    //   redirect("/login");
+    // }
   });
 }

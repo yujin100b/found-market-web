@@ -41,6 +41,7 @@
 
 <script>
 export default {
+  middleware: 'authenticated',
   data() {
     return {
       user: "이희준",
