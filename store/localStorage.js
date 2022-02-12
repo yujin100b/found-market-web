@@ -30,13 +30,15 @@ export const getters = {
   
 export const mutations = {
     set_token(state, response) {
-      console.log(state, response)
       state.token = response.data.access;
     },
     remove_token(state){
       state.token = "";
     },
     set_cart(state, response) {
-      state.cart = response.data.filter((item) => item.order == null);
+      state.cart = [...state.cart, response]
+    },
+    set_cart_bulk(state, response) {
+      state.cart = response
     },
   };

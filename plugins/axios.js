@@ -1,8 +1,9 @@
-export default function({ $axios, $store, redirect }) {
+export default function({ $axios, store, redirect }) {
   
   $axios.onRequest((config) => {
     config.baseURL = "http://localhost:8000/api"
     config.headers.common["Content-Type"] = "application/json";
+    config.headers.common["Authorization"] = `JWT ${store.state.localStorage.token}`;
     config.xsrfCookieName = "csrftoken";
     config.xsrfHeaderName = "X-CSRFToken";
     config.withCredentials = true
@@ -11,8 +12,10 @@ export default function({ $axios, $store, redirect }) {
 
   $axios.onError((error) => {
     const code = parseInt(error.response && error.response.status);
-    // if (code === 400) {
-    //   redirect("/login");
-    // }
+    console.log(code)
+    if (code == 401){
+      store.commit("localStorage/remove_token")
+      redirect("/login")
+    }
   });
 }

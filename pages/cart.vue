@@ -19,7 +19,7 @@
               <th class="no-padding"><check-box ref="confirmDoc" /></th>
               <td class="img">
                 <div class="img-wrap">
-                  <img :src="item.product.img" />
+                  <img :src="item.product.thumbnail" />
                 </div>
               </td>
               <td class="info">
@@ -30,32 +30,32 @@
                 <div class="cart-button">
                   <button>
                     <svg
-                  width="7"
-                  height="4"
-                  viewBox="0 0 7 4"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0.399414 3.03208V0.0800781H6.56741V3.03208H0.399414Z"
-                    fill="black"
-                  />
-                </svg>
+                      width="7"
+                      height="4"
+                      viewBox="0 0 7 4"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.399414 3.03208V0.0800781H6.56741V3.03208H0.399414Z"
+                        fill="black"
+                      />
+                    </svg>
                   </button>
                   <input type="number" v-model="cart[index].quantity" />
                   <button>
                     <svg
-                  width="11"
-                  height="10"
-                  viewBox="0 0 11 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6.55867 3.88H10.0587V6.02H6.55867V9.76H4.41867V6.02H0.918672V3.88H4.41867V0.0999994H6.55867V3.88Z"
-                    fill="black"
-                  />
-                </svg>
+                      width="11"
+                      height="10"
+                      viewBox="0 0 11 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6.55867 3.88H10.0587V6.02H6.55867V9.76H4.41867V6.02H0.918672V3.88H4.41867V0.0999994H6.55867V3.88Z"
+                        fill="black"
+                      />
+                    </svg>
                   </button>
                 </div>
               </td>
@@ -121,13 +121,12 @@ export default {
   components: { Navi },
   data() {
     return {
-      _cart: [],
       cart: [
         {
           id: 1,
           product: {
             id: 1,
-            img: "/slide1.jpg",
+            thumbnail: "/slide1.jpg",
             title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
             desc: "제주산 100% 고품질 찻잎만 담았어요",
             price: 10000,
@@ -149,7 +148,7 @@ export default {
           id: 2,
           product: {
             id: 1,
-            img: "/slide1.jpg",
+            thumbnail: "/slide1.jpg",
             title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
             desc: "제주산 100% 고품질 찻잎만 담았어요",
             price: 10000,
@@ -200,6 +199,20 @@ export default {
     goOrder() {
       this.$router.push("/order");
     },
+    get_cart() {
+      const isLogin = this.$store.getters["localStorage/tokenValid"];
+      if (isLogin) {
+        this.$store.dispatch("get_cart").then((res) => {
+          this.$store.commit("localStorage/set_cart_bulk", res.data);
+          this.cart = res.data;
+        });
+      } else {
+        this.cart = this.$store.state.localStorage.cart;
+      }
+    },
+  },
+  mounted() {
+    this.get_cart();
   },
 };
 </script>
@@ -430,7 +443,7 @@ export default {
     text-align: left;
     padding-left: 0;
   }
-  .cart-item th.no-padding{
+  .cart-item th.no-padding {
     padding: 0;
     padding-top: 8px;
   }
@@ -447,7 +460,7 @@ export default {
   }
   .cart-item td.img {
     display: flex;
-    padding-top:0;
+    padding-top: 0;
   }
   .cart-item td.info p:first-child {
     font-size: 16px;

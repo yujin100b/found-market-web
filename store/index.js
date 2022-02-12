@@ -120,17 +120,29 @@ export const actions = {
         });
     });
   },
-  // async post_cart({ commit }, payload) {
-  //   return await new Promise((resolve, reject) => {
-  //     this.$axios
-  //       .post("/cart/", payload)
-  //       .then((res) => {
-  //         commit('localStorage/set_cart', res.data)
-  //         resolve(res);
-  //       })
-  //       .catch((err) => {
-  //         reject(err);
-  //       });
-  //   });
-  // },
+  async post_cart({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .post("/cart/", payload)
+        .then((res) => {
+          commit('localStorage/set_cart', res.data)
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async get_cart({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get("/cart/", payload)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
 };

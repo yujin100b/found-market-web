@@ -62,7 +62,7 @@
                   />
                 </svg>
               </button>
-              <button class="addcart">장바구니에 담기</button>
+              <button class="addcart" @click="add_cart">장바구니에 담기</button>
             </div>
             <div class="pay-button">
               <button>
@@ -153,6 +153,21 @@ export default {
     id() {
       return this.$route.params.id;
     },
+    payload(){
+      return {
+        user: this.$store.getters["localStorage/getUserId"],
+        product : this.id,
+        quantity: this.amount,
+      }
+    },
+    dummyPayload() {
+      return {
+        user: this.$store.getters["localStorage/getUserId"],
+        id: null,
+        product: this.product,
+        quantity: this.amount,
+      };
+    },
   },
   methods: {
     goToFarmList() {
@@ -172,6 +187,29 @@ export default {
       this.$store.dispatch("get_farm_one", this.id).then((res) => {
         this.product = res.data;
       });
+    },
+    add_cart() {
+      const isLogin = this.$store.getters["localStorage/tokenValid"];
+      if (isLogin) {
+        this.$store
+          .dispatch("post_cart", this.payload)
+          .then((_) => {
+            if (
+              confirm("상품이 장바구니에 담겼습니다. 장바구니로 가시겠습니까?")
+            ) {
+              this.$router.push("/cart");
+            }
+          })
+          .catch((_) => {
+            alert("로그인 후 카트 이용이 가능합니다.");
+            this.$router.push("/login");
+          });
+      } else {
+        this.$store.commit("localStorage/set_cart", this.dummyPayload);
+        if (confirm("상품이 장바구니에 담겼습니다. 장바구니로 가시겠습니까?")) {
+          this.$router.push("/cart");
+        }
+      }
     },
   },
   created() {
