@@ -2,7 +2,7 @@ export const actions = {
   async get_slide({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get("/main_slide/")
+        .get("/api/main_slide/")
         .then((res) => {
           resolve(res);
         })
@@ -14,7 +14,7 @@ export const actions = {
   async get_main_market({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get("/main_market/")
+        .get("/api/main_market/")
         .then((res) => {
           resolve(res);
         })
@@ -26,7 +26,7 @@ export const actions = {
   async get_main_farm({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get("/main_farm/")
+        .get("/api/main_farm/")
         .then((res) => {
           resolve(res);
         })
@@ -38,7 +38,7 @@ export const actions = {
   async get_main_news({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get("/main_news/")
+        .get("/api/main_news/")
         .then((res) => {
           resolve(res);
         })
@@ -50,7 +50,7 @@ export const actions = {
   async get_market({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get("/market/")
+        .get("/api/market/")
         .then((res) => {
           resolve(res);
         })
@@ -62,7 +62,7 @@ export const actions = {
   async get_market_one({ commit }, id) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get(`/market/${id}/`)
+        .get(`/api/market/${id}/`)
         .then((res) => {
           resolve(res);
         })
@@ -74,7 +74,7 @@ export const actions = {
   async get_farm({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get("/farm/")
+        .get("/api/farm/")
         .then((res) => {
           resolve(res);
         })
@@ -86,7 +86,7 @@ export const actions = {
   async get_farm_one({ commit }, id) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get(`/farm/${id}/`)
+        .get(`/api/farm/${id}/`)
         .then((res) => {
           resolve(res);
         })
@@ -98,7 +98,7 @@ export const actions = {
   async post_contact({ commit }, payload) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .post("/contact/", payload)
+        .post("/api/contact/", payload)
         .then((res) => {
           resolve(res);
         })
@@ -110,7 +110,7 @@ export const actions = {
   async login({ commit }, payload) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .post("/token/", payload)
+        .post("/api/token/", payload)
         .then((res) => {
           commit('localStorage/set_token', res)
           resolve(res);
@@ -123,7 +123,7 @@ export const actions = {
   async post_cart({ commit }, payload) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .post("/cart/", payload)
+        .post("/api/cart/", payload)
         .then((res) => {
           commit('localStorage/set_cart', res.data)
           resolve(res);
@@ -136,7 +136,19 @@ export const actions = {
   async get_cart({ commit }, payload) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get("/cart/", payload)
+        .get("/api/cart/", payload)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async post_user({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .post("/auth/users/", payload)
         .then((res) => {
           resolve(res);
         })

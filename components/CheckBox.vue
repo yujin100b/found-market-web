@@ -1,6 +1,6 @@
 <template>
   <label>
-    <input type="checkbox" :checked="checked" :value="value" />
+    <input type="checkbox" v-model="checked" :value="value" />
     <span></span>
   </label>
 </template>
@@ -11,10 +11,10 @@ export default {
     prop: "checked",
     event: "change",
   },
-  props: {
-    checked: Boolean,
-    value: String,
-  },
+  props: [
+    'checked',
+    'value',
+  ],
 };
 </script>
 

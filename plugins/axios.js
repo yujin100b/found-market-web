@@ -1,9 +1,12 @@
 export default function({ $axios, store, redirect }) {
   
   $axios.onRequest((config) => {
-    config.baseURL = "http://localhost:8000/api"
+    config.baseURL = "http://localhost:8000"
     config.headers.common["Content-Type"] = "application/json";
-    config.headers.common["Authorization"] = `JWT ${store.state.localStorage.token}`;
+    if (config.url !== "/auth/users/")
+    {
+      config.headers.common["Authorization"] = `JWT ${store.state.localStorage.token}`;
+    }
     config.xsrfCookieName = "csrftoken";
     config.xsrfHeaderName = "X-CSRFToken";
     config.withCredentials = true

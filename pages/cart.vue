@@ -16,7 +16,7 @@
           </thead>
           <tbody>
             <tr class="cart-item" v-for="(item, index) in cart" :key="item.id">
-              <th class="no-padding"><check-box ref="confirmDoc" /></th>
+              <th class="no-padding"><check-box ref="confirmDoc" :checked="selected" /></th>
               <td class="img">
                 <div class="img-wrap">
                   <img :src="item.product.thumbnail" />
@@ -121,6 +121,7 @@ export default {
   components: { Navi },
   data() {
     return {
+      selected: [],
       cart: [
         {
           id: 1,

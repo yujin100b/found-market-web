@@ -72,7 +72,7 @@
             <div v-for="item in cart" :key="item.id" class="summary-item">
               <span>
                 <div class="img-wrap">
-                  <img :src="item.product.img" />
+                  <img :src="item.product.thumbnail" />
                 </div>
                 <p class="item-title">{{ item.product.title }}</p>
                 <p class="item-price">{{ getPrice(item) }}원</p>
@@ -143,52 +143,7 @@ export default {
   data() {
     return {
       message: "",
-      cart: [
-        {
-          id: 1,
-          product: {
-            id: 1,
-            img: "/slide1.jpg",
-            title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
-            desc: "제주산 100% 고품질 찻잎만 담았어요",
-            price: 10000,
-            sale_price: 9000,
-            discount_rate: 10,
-            new: true,
-            out: false,
-            contents: `
-            <p>세부 컨텐츠가 나오는 자리입니다.</p>
-            `,
-            check: "",
-            note: "",
-            tips: "",
-            partner: "",
-          },
-          quantity: 10,
-        },
-        {
-          id: 2,
-          product: {
-            id: 1,
-            img: "/slide1.jpg",
-            title: "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
-            desc: "제주산 100% 고품질 찻잎만 담았어요",
-            price: 10000,
-            sale_price: 9000,
-            discount_rate: 10,
-            new: true,
-            out: false,
-            contents: `
-            <p>세부 컨텐츠가 나오는 자리입니다.</p>
-            `,
-            check: "",
-            note: "",
-            tips: "",
-            partner: "",
-          },
-          quantity: 10,
-        },
-      ],
+      cart: this.$store.state.localStorage.cart,
       order: {},
     };
   },
