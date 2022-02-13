@@ -145,6 +145,18 @@ export const actions = {
         });
     });
   },
+  async post_order({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .post("/api/order/", payload)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   async post_user({ commit }, payload) {
     return await new Promise((resolve, reject) => {
       this.$axios

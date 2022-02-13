@@ -8,7 +8,7 @@
           <div class="shipping">
             <label>
               <span>수령인*</span>
-              <input class="full-width" />
+              <input class="full-width" v-model="receiver" />
             </label>
             <label class="address">
               <span>배송지</span>
@@ -34,15 +34,18 @@
                 id="sample6_detailAddress"
                 placeholder="상세주소"
                 class="full-width"
+                v-model="address_2"
               />
             </label>
             <label class="phone">
               <span>연락처</span>
-              <input /> - <input /> - <input />
+              <input v-model="phone_1[0]" /> - <input v-model="phone_1[1]" /> -
+              <input v-model="phone_1[2]" />
             </label>
             <label class="phone">
               <span>연락처2</span>
-              <input /> - <input /> - <input />
+              <input v-model="phone_2[0]" /> - <input v-model="phone_2[1]" /> -
+              <input v-model="phone_2[2]" />
             </label>
             <label>
               <span>배송메모</span>
@@ -54,7 +57,7 @@
               </select>
             </label>
             <label class="base-shipping">
-            <check-box /> <span>이 배송지를 기본 배송지로 저장합니다.</span>
+              <check-box /> <span>이 배송지를 기본 배송지로 저장합니다.</span>
             </label>
           </div>
           <div class="transaction pc">
@@ -118,19 +121,19 @@
         <p>무통장 입금: 국민 009901-04-162032 더로컬프로젝트(주)</p>
       </div>
       <div class="confirm-wrap mobile">
-            <check-box ref="confirmDoc" />
-            <div>
-              <p>
-                상품 및 구매 조건을 확인하였으며, 결제 대행 서비스에
-                동의합니다.(필수)
-              </p>
-              <p>개인정보 수집/이용 동의 (필수) <span>보기</span></p>
-              <p>개인정보 제3자 제공 동의 (필수) <span>보기</span></p>
-            </div>
-          </div>
-          <div class="button-wrap mobile">
-            <button @click="goToSuccess()">결제하기</button>
-          </div>
+        <check-box ref="confirmDoc" />
+        <div>
+          <p>
+            상품 및 구매 조건을 확인하였으며, 결제 대행 서비스에
+            동의합니다.(필수)
+          </p>
+          <p>개인정보 수집/이용 동의 (필수) <span>보기</span></p>
+          <p>개인정보 제3자 제공 동의 (필수) <span>보기</span></p>
+        </div>
+      </div>
+      <div class="button-wrap mobile">
+        <button @click="goToSuccess()">결제하기</button>
+      </div>
     </div>
     <Footer />
   </div>
@@ -144,16 +147,25 @@ export default {
     return {
       message: "",
       cart: this.$store.state.localStorage.cart,
-      order: {},
+      receiver: "",
+      zip_code: "",
+      address_1: "",
+      address_2: "",
+      phone_1: ["", "", ""],
+      phone_2: ["", "", ""],
     };
   },
   computed: {
     totalOrderPrice() {
+      if (this.cart.length == 0) return 0;
       const prices = this.cart.map(
         (item) => this.getPrice(item) * item.quantity
       );
-      const total = prices.reduce((acc, cur) => acc + cur);
-      return total;
+      if (prices.length < 2) {
+        const total = prices.reduce((acc, cur) => acc + cur);
+        return total;
+      }
+      return prices[0];
     },
     shipping() {
       if (this.totalOrderPrice > 70000) return 0;
@@ -164,6 +176,19 @@ export default {
     },
     confirmDocs() {
       return this.$refs.CheckBox.$props;
+    },
+    payload() {
+      return {
+        user: this.$store.getters["localStorage/getUserId"],
+        receiver: this.receiver,
+        zip_code: document.getElementById("sample6_postcode").value,
+        address_1: document.getElementById("sample6_address").value,
+        address_2: this.address_2,
+        phone_1: this.phone_1.join("-"),
+        phone_2: this.phone_2.join("-"),
+        message: this.message,
+        cart: this.cart.map((el) => el.id),
+      };
     },
   },
   methods: {
@@ -202,7 +227,7 @@ export default {
             // 조합된 참고항목을 해당 필드에 넣는다.
             //document.getElementById("sample6_extraAddress").value = extraAddr;
           } else {
-            //document.getElementById("sample6_extraAddress").value = "";
+            // document.getElementById("sample6_extraAddress").value = "";
           } // 우편번호와 주소 정보를 해당 필드에 넣는다.
           document.getElementById("sample6_postcode").value = data.zonecode;
           document.getElementById("sample6_address").value = addr + extraAddr;
@@ -218,8 +243,12 @@ export default {
       return cartitem.product.price;
     },
     goToSuccess() {
-      /* TODO: 주분 정보 저장하는 코드 넣기 */
-      this.$router.push("/order/success");
+      this.$store
+        .dispatch("post_order", this.payload)
+        .then((res) => this.$router.push(`/order/success?id=${res.data.id}`));
+    },
+    order() {
+      this.$store.dispatch("post_order", this.payload);
     },
   },
 };
@@ -237,7 +266,7 @@ export default {
   line-height: 26px;
   padding-bottom: 34px;
 }
-.order .transaction h1{
+.order .transaction h1 {
   padding-top: 50px;
 }
 .order-body {
@@ -288,7 +317,7 @@ export default {
   width: calc(100% - 180px);
 }
 .order-body .shipping label input[type="button"] {
-  background: #FFD228;
+  background: #ffd228;
   width: 100px;
 }
 .order-body .shipping label select {
@@ -309,8 +338,8 @@ export default {
   width: 115px;
 }
 .order-body .shipping label {
-    display: block;
-    margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
 .transaction p {
   font-family: "Noto Sans KR";
@@ -445,26 +474,26 @@ export default {
   font-weight: 600;
   font-size: 20px;
 }
-label.base-shipping{
+label.base-shipping {
   min-width: 319px;
   display: flex !important;
   margin-left: 75px;
 }
-label.base-shipping > label > span{
+label.base-shipping > label > span {
   margin-right: 10px;
   display: block;
   width: 319px;
 }
 @media (max-width: 980px) {
-  .order{
+  .order {
     padding-top: 53px;
   }
   .order h1 {
     width: 315px;
     margin: 0 auto;
   }
-  .order .section > h1{
-    border-bottom:2px solid #000000;
+  .order .section > h1 {
+    border-bottom: 2px solid #000000;
     padding-bottom: 1px;
     margin-bottom: 18px;
   }
@@ -477,25 +506,26 @@ label.base-shipping > label > span{
     padding-right: 0;
     padding-bottom: 30px;
   }
-  .order-body .shipping label input.full-width{
+  .order-body .shipping label input.full-width {
     width: calc(100% - 59px);
-}
+  }
   .order-body .shipping label span {
     width: 54px;
   }
   .order-body .shipping label input.with-button {
     width: calc(100% - 163px);
   }
-  #sample6_address, #sample6_detailAddress {
+  #sample6_address,
+  #sample6_detailAddress {
     margin-left: 59px;
   }
-  .order-body .shipping label.phone input{
+  .order-body .shipping label.phone input {
     width: 74px;
   }
-  .order-body .shipping label select{
+  .order-body .shipping label select {
     width: calc(100% - 59px);
   }
-  label.base-shipping{
+  label.base-shipping {
     min-width: unset;
   }
   .order-body > div.summary {
@@ -509,24 +539,24 @@ label.base-shipping > label > span{
     padding-top: 2px;
     border-top: 2px solid #000000;
   }
-  .confirm-wrap p{
+  .confirm-wrap p {
     padding-top: 0;
     line-height: 13px;
   }
   .transaction.mobile,
-  .confirm-wrap.mobile{
+  .confirm-wrap.mobile {
     display: block;
     width: 315px;
-    margin: 0 auto
+    margin: 0 auto;
   }
-  .transaction.mobile{
+  .transaction.mobile {
     padding: 36px 0;
   }
-  .confirm-wrap.mobile{
+  .confirm-wrap.mobile {
     display: flex;
     margin-bottom: 60px;
   }
-  .transaction.mobile h1{
+  .transaction.mobile h1 {
     font-size: 22px;
     line-height: 30px;
   }
