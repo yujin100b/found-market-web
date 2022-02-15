@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      user: "이희준",
+      user: this.$store.state.localStorage.user_name,
       multiple: true,
       groupId: '',
       content: [

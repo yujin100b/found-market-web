@@ -1,9 +1,11 @@
 export default function({ $axios, store, redirect }) {
-  
+  const urls = ["order", "cart", "me"]
+
   $axios.onRequest((config) => {
     config.baseURL = "http://localhost:8000"
     config.headers.common["Content-Type"] = "application/json";
-    if (config.url !== "/auth/users/")
+    const match = urls.filter(keyword => config.url.indexOf(keyword) !== -1)
+    if (match.length !== 0)
     {
       config.headers.common["Authorization"] = `JWT ${store.state.localStorage.token}`;
     }

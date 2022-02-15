@@ -10,14 +10,14 @@
         <div class="lb_item__hl">
           <div class="list-item-wrap">
             <div class="img-wrap">
-              <img :src="item.product.img" />
+              <img :src="item.product.thumbnail" />
             </div>
             <div class="text-wrap">
               <p class="item-title" v-html="item.product.title"></p>
-              <p>서 못샀었는데... 그래서 너무 많이 후회하다가 이번에 바로 출시하자마자 샀어요. 농장환경도 잘 되어있는곳에서 제조해서 그런지 맛도 더 좋고 자연의 향도 느껴져요</p>
+              <p>{{ item.text }}</p>
             </div>
           </div>
-          <button v-on:click="remove(index)">삭제하기</button>
+          <button v-on:click="remove(item.id)">삭제하기</button>
         </div>
       </li>
     </ul>
@@ -35,8 +35,11 @@ export default {
     };
   },
   methods: {
-    remove(index) {
-      alert("삭제되었습니다.");
+    remove(id) {
+      this.$store.dispatch("delete_review", id).then((_) => {
+        this.$emit("update");
+        alert("삭제되었습니다.");
+      });
     },
   },
 };
@@ -67,16 +70,16 @@ export default {
   margin-bottom: 0;
 }
 .lb_accordeon .lb_item__hl {
-    position: relative;
-    padding: 22px 0;
-    padding-bottom: 0;
-    transition: color 200ms;
-    background: #fff;
-    border-bottom: 1px solid #000;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    flex-direction: column;
+  position: relative;
+  padding: 22px 0;
+  padding-bottom: 0;
+  transition: color 200ms;
+  background: #fff;
+  border-bottom: 1px solid #000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 .list-item-wrap {
   display: flex;
@@ -168,8 +171,8 @@ export default {
     line-height: 20px;
   }
   .list-item-wrap .text-wrap p:last-child {
-    font-size: 12px;  
-line-height: 20px;
+    font-size: 12px;
+    line-height: 20px;
   }
   .img-input-form {
     padding-top: 15px;

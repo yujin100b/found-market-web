@@ -245,7 +245,7 @@ export default {
     goToSuccess() {
       this.$store
         .dispatch("post_order", this.payload)
-        .then((res) => this.$router.push(`/order/success?id=${res.data.id}`));
+        .then((res) => this.$router.push(`/order/success?id=${res.data.order_num}`));
     },
     order() {
       this.$store.dispatch("post_order", this.payload);

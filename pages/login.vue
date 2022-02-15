@@ -33,6 +33,9 @@ export default {
       }
     }
   },
+  mounted(){
+    this.$store.commit("localStorage/remove_token")
+  },
   methods:{
     goToRegist() {
       this.$router.push('/regist')

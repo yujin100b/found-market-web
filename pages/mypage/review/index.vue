@@ -24,10 +24,10 @@
             >
           </p>
           <div v-if="tab == 'one'">
-            <ReviewItem :content="will_review" />
+            <ReviewItem :content="will_review" @update="get_review" />
           </div>
           <div v-if="tab == 'two'">
-            <ReviewedItem :content="reviewed" />
+            <ReviewedItem :content="reviewed" @update="get_review" />
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       tab: "one",
-      user: "이희준",
+      user: this.$store.state.localStorage.user_name,
       will_review: [
         {
           id: 1,
@@ -143,7 +143,18 @@ export default {
     isActive(tab_name) {
       return this.tab === tab_name ? "active" : "";
     },
+    get_review(){
+      this.$store.dispatch("get_review").then(
+        res => {
+          this.will_review = res.data.filter(el => el.text.length === 0 )
+          this.reviewed = res.data.filter(el => el.text.length > 0 )
+        }
+      )
+    }
   },
+  mounted(){
+    this.get_review()
+  }
 };
 </script>
 

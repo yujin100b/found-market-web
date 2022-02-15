@@ -36,8 +36,8 @@
         </tbody>
       </table>
       <div class="button-wrap">
-        <button>주문 내역 보기</button>
-        <button>다른 상품 보기</button>
+        <button @click="goToOrderDetail">주문 내역 보기</button>
+        <button @click="goToMarket">다른 상품 보기</button>
       </div>
     </div>
     <Footer />
@@ -56,6 +56,27 @@ export default {
       },
     };
   },
+  computed:{
+    order_num(){
+      return this.$route.query.id
+    }
+  },
+  methods:{
+    get_order_success(){
+      this.$store.dispatch("get_order_one", this.order_num).then( res => {
+          this.order = res.data[0]
+        })
+    },
+    goToMarket(){
+      this.$router.push("/market")
+    },
+    goToOrderDetail(){
+      this.$router.push(`/mypage/order/${this.order_num}`)
+    }
+  },
+  mounted(){
+    this.get_order_success()
+  }
 };
 </script>
 

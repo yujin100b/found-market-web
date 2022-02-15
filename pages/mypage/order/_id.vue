@@ -27,7 +27,7 @@
               </p>
               <p>
                 <span>주문자명</span
-                ><span>{{ orderdetail.user.username }}</span>
+                ><span>{{ user }}</span>
               </p>
               <p>
                 <span>걸제현황</span><span>{{ orderdetail.status }}</span>
@@ -67,7 +67,7 @@
               >
                 <td class="cart-info">
                   <div class="img-wrap">
-                    <img :src="item.product.img" />
+                    <img :src="item.product.thumbnail" />
                   </div>
                   <div class="info">
                     <p>{{ item.product.title }}</p>
@@ -142,15 +142,12 @@
 export default {
   data() {
     return {
-      user: "이희준",
+      user: this.$store.state.localStorage.user_name,
       orderdetail: {
         order_num: "OD20210303-190718",
         shipping_num: "대한통운 3434987920393",
         order_name:
           "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g 외 1건",
-        user: {
-          username: "이희준",
-        },
         receiver: "이호진",
         address_1: "서울시 용산구 한강대로 321-1",
         address_2: "4층 옥상",
@@ -163,7 +160,7 @@ export default {
             id: 1,
             product: {
               id: 1,
-              img: "/slide1.jpg",
+              thumbnail: "/slide1.jpg",
               title:
                 "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
               desc: "제주산 100% 고품질 찻잎만 담았어요",
@@ -187,7 +184,7 @@ export default {
             id: 2,
             product: {
               id: 1,
-              img: "/slide1.jpg",
+              thumbnail: "/slide1.jpg",
               title:
                 "[파운드 티] 제주가 품은 이야기, 어린잎과 만난 진피녹차 16g",
               desc: "제주산 100% 고품질 찻잎만 담았어요",
@@ -239,6 +236,9 @@ export default {
     };
   },
   computed: {
+    order_num(){
+      return this.$route.params.id
+    },
     address() {
       const { address_1, address_2, zip_code } = this.orderdetail;
       return `${address_1} ${address_2} (${zip_code})`;
@@ -274,7 +274,15 @@ export default {
     goToOrerDetail(id) {
       this.$router.push(`/mypage/order/${id}`);
     },
+    get_order_one(){
+      this.$store.dispatch("get_order_one", this.order_num).then( res => {
+          this.orderdetail = res.data[0]
+        })
+    },
   },
+  mounted(){
+    this.get_order_one()
+  }
 };
 </script>
 
@@ -418,7 +426,7 @@ export default {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 19px;
   line-height: 30px;
 }
 .orderdetail .meta-wrap .meta p span:first-child {

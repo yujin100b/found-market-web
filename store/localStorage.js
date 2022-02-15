@@ -29,6 +29,9 @@ export const getters = {
   }
   
 export const mutations = {
+    set_username(state, response){
+      state.user_name = response.data.last_name + response.data.first_name
+    },
     set_token(state, response) {
       state.token = response.data.access;
     },

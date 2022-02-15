@@ -21,7 +21,7 @@
           </div>
           <div
             class="tr"
-            @click="goToOrerDetail(orderitem.id)"
+            @click="goToOrerDetail(orderitem.order_num)"
             v-for="orderitem in orderlist"
             :key="orderitem.id"
           >
@@ -44,7 +44,7 @@ export default {
   middleware: 'authenticated',
   data() {
     return {
-      user: "이희준",
+      user: this.$store.state.localStorage.user_name,
       orderlist: [
         {
           id: 1,
@@ -74,7 +74,17 @@ export default {
     goToOrerDetail(id) {
       this.$router.push(`/mypage/order/${id}`);
     },
+    get_orders(){
+      this.$store.dispatch('get_order').then(
+        (res) => {
+          this.orderlist = res.data
+        }
+      )
+    }
   },
+  mounted(){
+    this.get_orders()
+  }
 };
 </script>
 

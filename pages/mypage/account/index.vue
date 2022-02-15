@@ -76,7 +76,7 @@
 export default {
   data(){
     return{
-      user: "이희준",
+      user: this.$store.state.localStorage.user_name,
       current: null,
       new_word : null,
       new_confirm : null,

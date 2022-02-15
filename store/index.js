@@ -107,12 +107,26 @@ export const actions = {
         });
     });
   },
+  
   async login({ commit }, payload) {
     return await new Promise((resolve, reject) => {
       this.$axios
         .post("/api/token/", payload)
         .then((res) => {
           commit('localStorage/set_token', res)
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async me({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get("auth/users/me/")
+        .then((res) => {
+          commit('localStorage/set_username', res)
           resolve(res);
         })
         .catch((err) => {
@@ -161,6 +175,68 @@ export const actions = {
     return await new Promise((resolve, reject) => {
       this.$axios
         .post("/auth/users/", payload)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async get_order({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get(`/api/order/`)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async get_order_one({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get(`/api/order/?order_num=${payload}`)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async get_review({ commit }) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get(`/api/review/`)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async put_review({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .put(`/api/review/${payload.id}/`, {
+          text: payload.text
+        })
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async delete_review({ commit }, id) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .delete(`/api/review/${id}/`)
         .then((res) => {
           resolve(res);
         })

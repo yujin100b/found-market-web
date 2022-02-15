@@ -10,7 +10,7 @@
         <div class="lb_item__hl">
           <div class="list-item-wrap">
             <div class="img-wrap">
-              <img :src="item.product.img" />
+              <img :src="item.product.thumbnail" />
             </div>
             <div class="text-wrap">
               <p class="item-title" v-html="item.product.title"></p>
@@ -44,7 +44,7 @@
               <div class="text-input-form">
                 <textarea v-model="reviews" placeholder="최소 15자 이상 작성해주세요.">
                 </textarea>
-                <button @click="save">저장</button>
+                <button @click="save(item.id)">저장</button>
               </div>
             </div>
           </div>
@@ -66,7 +66,6 @@ export default {
   },
   methods: {
     faqTrigger: function (newFaq) {
-
       this.images = []
       this.reviews = ''
       if (newFaq === this.currentIdx) {
@@ -105,8 +104,16 @@ export default {
     removeImage(index) {
       this.images.splice(index, 1);
     },
-    save(){
-      alert("저장되었습니다.")
+    save(id){
+      const payload = {
+        id: id,
+        text: this.reviews
+      }
+      this.$store.dispatch("put_review", payload).then(
+        _ => {
+          alert("저장되었습니다.")
+          this.$emit("update")
+        })
     }
   },
 };
