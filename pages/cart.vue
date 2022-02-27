@@ -7,7 +7,14 @@
         <table class="table is-fullwidth">
           <thead>
             <tr>
-              <th><check-box ref="confirmDoc" /></th>
+              <th>
+                <check-box
+                  ref="confirmDoc"
+                  :value="cart.map(({ id }) => id)"
+                  v-model="selected"
+                  :isMaster="true"
+                />
+              </th>
               <th></th>
               <th>상품정보</th>
               <th>수량</th>
@@ -16,7 +23,13 @@
           </thead>
           <tbody>
             <tr class="cart-item" v-for="(item, index) in cart" :key="item.id">
-              <th class="no-padding"><check-box ref="confirmDoc" :checked="selected" /></th>
+              <th class="no-padding">
+                <check-box
+                  ref="confirmDoc"
+                  :value="item.id"
+                  v-model="selected"
+                />
+              </th>
               <td class="img">
                 <div class="img-wrap">
                   <img :src="item.product.thumbnail" />
@@ -66,8 +79,8 @@
           </tbody>
         </table>
         <div class="remove-buttons">
-          <button>선택상품 삭제</button>
-          <button>전체상품 삭제</button>
+          <button @click="delete_cart_selected">선택상품 삭제</button>
+          <button @click="delete_cart_all">전체상품 삭제</button>
         </div>
         <div class="summary columns">
           <div class="column flex-box">
@@ -211,6 +224,16 @@ export default {
         this.cart = this.$store.state.localStorage.cart;
       }
     },
+    delete_cart_selected(){
+      this.$store.dispatch("delete_cart_selected", this.selected).then((res) => {
+        this.get_cart()
+      })
+    },
+    delete_cart_all(){
+      this.$store.dispatch("delete_cart_selected", this.cart.map(({id}) => id)).then((res) => {
+        this.get_cart()
+      })
+    }
   },
   mounted() {
     this.get_cart();

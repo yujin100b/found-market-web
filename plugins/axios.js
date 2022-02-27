@@ -2,6 +2,7 @@ export default function({ $axios, store, redirect }) {
   const urls = ["order", "cart", "me"]
 
   $axios.onRequest((config) => {
+    // config.baseURL = "http://api.foundmarket.kr"
     config.baseURL = "http://localhost:8000"
     config.headers.common["Content-Type"] = "application/json";
     const match = urls.filter(keyword => config.url.indexOf(keyword) !== -1)

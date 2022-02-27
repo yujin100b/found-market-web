@@ -1,6 +1,11 @@
 <template>
   <label>
-    <input type="checkbox" v-model="checked" :value="value" />
+    <input
+      type="checkbox"
+      :checked="isChecked"
+      :value="value"
+      @change="updateInput"
+    />
     <span></span>
   </label>
 </template>
@@ -11,10 +16,51 @@ export default {
     prop: "checked",
     event: "change",
   },
-  props: [
-    'checked',
-    'value',
-  ],
+  props: ["checked", "value"],
+  model: {
+    prop: "modelValue",
+    event: "change",
+  },
+  props: {
+    isMaster: { default: false },
+    value: { type: String | Number },
+    modelValue: { default: "" },
+    trueValue: { default: true },
+    falseValue: { default: false },
+  },
+  computed: {
+    isChecked() {
+      if (this.modelValue instanceof Array) {
+        return this.modelValue.includes(this.value);
+      }
+      // Note that `true-value` and `false-value` are camelCase in the JS
+      return this.modelValue === this.trueValue;
+    },
+  },
+  methods: {
+    updateInput(event) {
+      let isChecked = event.target.checked;
+      if (this.modelValue instanceof Array) {
+        let newValue = [...this.modelValue];
+        if (isChecked) {
+          if (this.isMaster) {
+            newValue = this.value;
+          } else {
+            newValue.push(this.value);
+          }
+        } else {
+          if (this.isMaster) {
+            newValue = [];
+          } else {
+            newValue.splice(newValue.indexOf(this.value), 1);
+          }
+        }
+        this.$emit("change", newValue);
+      } else {
+        this.$emit("change", isChecked ? this.trueValue : this.falseValue);
+      }
+    },
+  },
 };
 </script>
 
