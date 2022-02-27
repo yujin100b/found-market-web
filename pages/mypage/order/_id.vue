@@ -26,8 +26,7 @@
                 ><span>{{ created_date(orderdetail.created_at) }}</span>
               </p>
               <p>
-                <span>주문자명</span
-                ><span>{{ user }}</span>
+                <span>주문자명</span><span>{{ user }}</span>
               </p>
               <p>
                 <span>걸제현황</span><span>{{ orderdetail.status }}</span>
@@ -81,7 +80,7 @@
                   <p>{{ orderdetail.status }}</p>
                 </td>
                 <td class="review-btn-wrap">
-                  <button>리뷰쓰기</button>
+                  <button @click="goToReview">리뷰쓰기</button>
                 </td>
               </tr>
             </tbody>
@@ -98,7 +97,7 @@
           <div class="transaction" v-if="isCompleted">
             <p>[결제 정보]</p>
             <p>
-              <span>결제방법</span> <span>{{ isCompleted.payment_type }}</span>
+              <span>결제방법</span> <span>{{ paymentType }}</span>
             </p>
             <p>
               <span>결제일자</span>
@@ -128,20 +127,29 @@
           </div>
 
           <div class="buttons">
-            <button v-if="!isCanceled">주문 취소 요청</button>
+            <button v-if="!isCanceled" @click="request_cancel">주문 취소 요청</button>
             <button>주문 내역서 출력</button>
           </div>
         </div>
       </div>
     </div>
+    <cancel-modal
+      :isActive="is_modal_active"
+      :order_num="orderdetail.order_num"
+      :order_id="orderdetail.id"
+      @modal_close="is_modal_active = false"
+    />
     <Footer />
   </div>
 </template>
 
 <script>
+import CancelModal from "../../../components/CancelModal.vue";
 export default {
+  components: { CancelModal },
   data() {
     return {
+      is_modal_active: false,
       user: this.$store.state.localStorage.user_name,
       orderdetail: {
         order_num: "OD20210303-190718",
@@ -236,8 +244,8 @@ export default {
     };
   },
   computed: {
-    order_num(){
-      return this.$route.params.id
+    order_num() {
+      return this.$route.params.id;
     },
     address() {
       const { address_1, address_2, zip_code } = this.orderdetail;
@@ -251,7 +259,7 @@ export default {
     },
     isCanceled() {
       const cancel = this.orderdetail.transaction.filter(
-        (el) => el.status == "취소완료"
+        (el) => el.status == 3
       );
       if (cancel.length > 0) {
         return this.orderdetail.cancel[0];
@@ -259,10 +267,23 @@ export default {
     },
     isCompleted() {
       const complete = this.orderdetail.transaction.filter(
-        (el) => el.status == "결제완료"
+        (el) => el.status == 1
       );
       if (complete.length > 0) return complete[0];
       else return false;
+    },
+    paymentType() {
+      const complete = this.orderdetail.transaction.filter(
+        (el) => el.status == 1
+      );
+      switch (complete[0].payment_type) {
+        case 0:
+          return "무통장입금";
+        case 1:
+          return "네이버페이";
+        default:
+          return "";
+      }
     },
   },
   methods: {
@@ -274,15 +295,21 @@ export default {
     goToOrerDetail(id) {
       this.$router.push(`/mypage/order/${id}`);
     },
-    get_order_one(){
-      this.$store.dispatch("get_order_one", this.order_num).then( res => {
-          this.orderdetail = res.data[0]
-        })
+    goToReview() {
+      this.$router.push("/mypage/review");
     },
+    get_order_one() {
+      this.$store.dispatch("get_order_one", this.order_num).then((res) => {
+        this.orderdetail = res.data[0];
+      });
+    },
+    request_cancel(){
+      this.is_modal_active = true
+    }
   },
-  mounted(){
-    this.get_order_one()
-  }
+  mounted() {
+    this.get_order_one();
+  },
 };
 </script>
 
@@ -522,6 +549,7 @@ export default {
   align-items: flex-start;
   padding-bottom: 1.5rem;
   border-bottom: 3px solid #000000;
+  margin-bottom: 36px;
 }
 .orderdetail .summary p {
   font-family: "Noto Sans KR";
@@ -539,7 +567,7 @@ export default {
   line-height: 30px;
 }
 .orderdetail .transaction {
-  padding-top: 36px;
+  /* padding-top: 36px; */
 }
 .orderdetail .transaction p {
   padding-bottom: 10px;
@@ -590,6 +618,9 @@ export default {
   font-size: 12px;
   line-height: 14px;
   color: #000000;
+}
+.buttons button:last-child {
+  margin-left: 15px;
 }
 @media (max-width: 980px) {
   .order h1 {
@@ -694,7 +725,7 @@ export default {
     font-weight: bold;
     margin-bottom: 0;
   }
-  .orderdetail .summary{
+  .orderdetail .summary {
     display: none;
   }
   .orderdetail .transaction p[data-v-25ba529e]:first-child {

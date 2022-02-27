@@ -219,6 +219,30 @@ export const actions = {
         });
     });
   },
+  async cancel_before_paid({ commit }, pk) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .patch(`/api/order/${pk}`)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async post_cancel({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .post(`/api/cancel/`, payload)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   async get_review({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios

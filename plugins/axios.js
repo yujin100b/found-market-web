@@ -1,5 +1,5 @@
 export default function({ $axios, store, redirect }) {
-  const urls = ["order", "cart", "me"]
+  const urls = ["order", "cart", "me", "cancel"]
 
   $axios.onRequest((config) => {
     // config.baseURL = "http://api.foundmarket.kr"
