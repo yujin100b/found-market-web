@@ -134,6 +134,30 @@ export const actions = {
         });
     });
   },
+  async get_addr({ commit }) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get("/api/user_addr/")
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  async post_addr({ commit }, payload) {
+    return await new Promise((resolve, reject) => {
+      this.$axios
+        .get("/api/user_addr/", payload)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
   async post_cart({ commit }, payload) {
     return await new Promise((resolve, reject) => {
       this.$axios
@@ -147,10 +171,10 @@ export const actions = {
         });
     });
   },
-  async get_cart({ commit }, payload) {
+  async get_cart({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
-        .get("/api/cart/", payload)
+        .get("/api/cart/")
         .then((res) => {
           resolve(res);
         })
@@ -195,7 +219,7 @@ export const actions = {
         });
     });
   },
-  async get_order({ commit }, payload) {
+  async get_order({ commit }) {
     return await new Promise((resolve, reject) => {
       this.$axios
         .get(`/api/order/`)

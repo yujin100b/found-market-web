@@ -57,10 +57,10 @@
               <span class="help-text">{{ address_help_text }}</span>
               <div class="btn-and-links">
 
-                <button>변경하기</button>
+                <button @click="postBaseAddr">변경하기</button>
                 <div class="links">
-                  <button>회원 탈퇴하기</button>
-                  <button>로그아웃</button>
+                  <button @click="logout">회원 탈퇴하기</button>
+                  <button @click="logout">로그아웃</button>
                 </div>
               </div>
             </div>
@@ -83,7 +83,6 @@ export default {
       postcode : null,
       address_1 : null,
       address_2 : null,
-
     }
   },
   computed:{
@@ -148,6 +147,29 @@ export default {
         },
       }).open();
     },
+    getBaseAddr(){
+      this.$store.dispatch("get_addr").then((res) => {
+        if (res.data.length > 0) {
+          const data = res.data[0]
+          this.receiver = data.receiver
+          this.postcode = data.zip_code
+          this.address_1 = data.address_1
+          this.address_2 = data.address_2
+        }
+      })
+    },
+    postBaseAddr(){
+      this.$store.dispatch("post_addr", this.address).then(
+        (_) => alert("기본 배송 주소가 바뀌었습니다.")
+      )
+    },
+    logout(){
+      this.$store.commit("localStorage/remove_token")
+      this.$router.push("/");
+    }
+  },
+  mounted(){
+    this.getBaseAddr()
   }
 }
 </script>

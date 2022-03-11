@@ -11,7 +11,7 @@
               <input class="full-width" v-model="receiver" />
             </label>
             <label class="address">
-              <span>배송지</span>
+              <span>배송지*</span>
               <input
                 type="text"
                 id="sample6_postcode"
@@ -38,7 +38,7 @@
               />
             </label>
             <label class="phone">
-              <span>연락처</span>
+              <span>연락처*</span>
               <input v-model="phone_1[0]" /> - <input v-model="phone_1[1]" /> -
               <input v-model="phone_1[2]" />
             </label>
@@ -57,7 +57,8 @@
               </select>
             </label>
             <label class="base-shipping">
-              <check-box /> <span>이 배송지를 기본 배송지로 저장합니다.</span>
+              <check-box v-model="base_address" />
+              <span>이 배송지를 기본 배송지로 저장합니다.</span>
             </label>
           </div>
           <div class="transaction pc">
@@ -101,7 +102,7 @@
             </div>
           </div>
           <div class="confirm-wrap pc">
-            <check-box ref="confirmDoc" />
+            <check-box v-model="confirmed" />
             <div>
               <p>
                 상품 및 구매 조건을 확인하였으며, 결제 대행 서비스에
@@ -121,7 +122,7 @@
         <p>무통장 입금: 국민 009901-04-162032 더로컬프로젝트(주)</p>
       </div>
       <div class="confirm-wrap mobile">
-        <check-box ref="confirmDoc" />
+        <check-box v-model="confirmed" />
         <div>
           <p>
             상품 및 구매 조건을 확인하였으며, 결제 대행 서비스에
@@ -153,6 +154,8 @@ export default {
       address_2: "",
       phone_1: ["", "", ""],
       phone_2: ["", "", ""],
+      confirmed: false,
+      base_address: false,
     };
   },
   computed: {
@@ -174,10 +177,7 @@ export default {
     totalPrice() {
       return this.totalOrderPrice + this.shipping;
     },
-    confirmDocs() {
-      return this.$refs.CheckBox.$props;
-    },
-    payload() {
+    address() {
       return {
         user: this.$store.getters["localStorage/getUserId"],
         receiver: this.receiver,
@@ -186,9 +186,24 @@ export default {
         address_2: this.address_2,
         phone_1: this.phone_1.join("-"),
         phone_2: this.phone_2.join("-"),
-        message: this.message,
+      };
+    },
+    payload() {
+      const address = this.address;
+      return {
+        ...address,
+        message: this.message.length === 0 ? "배송 메세지 없음" : this.message,
         cart: this.cart.map((el) => el.id),
       };
+    },
+    isValidate() {
+      return (
+        this.receiver.length !== 0 && 
+        this.phone_1.join("-").length !== 2 && 
+        this.address_1 !== 0 &&
+        this.address_2 !== 0 &&
+        this.zip_code !== 0
+      );
     },
   },
   methods: {
@@ -243,14 +258,36 @@ export default {
       return cartitem.product.price;
     },
     goToSuccess() {
-      this.$store
-        .dispatch("post_order", this.payload)
-        .then((res) => this.$router.push(`/order/success?id=${res.data.order_num}`));
+      if (!this.confirmed) return alert("결제 이용 약관에 동의해주세요.");
+      if (!this.isValidate) return alert("배송 정보를 모두 입력했는지 확인해주세요.")
+      this.$store.dispatch("post_order", this.payload).then((res) => {
+        if (this.base_address) {
+          this.$store.dispatch("post_addr", this.address);
+        }
+        this.$router.push(`/order/success?id=${res.data.order_num}`);
+      });
     },
     order() {
       this.$store.dispatch("post_order", this.payload);
     },
+    getBaseAddr(){
+      this.$store.dispatch("get_addr").then((res) => {
+        if (res.data.length > 0) {
+          const data = res.data[0]
+          this.receiver = data.receiver
+          this.zip_code = data.zip_code
+          this.address_2 = data.address_2
+          document.getElementById("sample6_postcode").value =  data.zip_code;
+          document.getElementById("sample6_address").value = data.address_1;
+          this.phone_1 = data.phone_1.split("-")
+          this.phone_2 = data.phone_2.split("-")
+        }
+      })
+    }
   },
+  mounted(){
+    this.getBaseAddr()
+  }
 };
 </script>
 
@@ -474,15 +511,16 @@ export default {
   font-weight: 600;
   font-size: 20px;
 }
-label.base-shipping {
+.order-body .shipping label.base-shipping {
   min-width: 319px;
   display: flex !important;
   margin-left: 75px;
 }
-label.base-shipping > label > span {
-  margin-right: 10px;
+.order-body .shipping label.base-shipping > span {
+  margin-left: 10px;
   display: block;
-  width: 319px;
+  width: 319px !important;
+  margin-top: 4px;
 }
 @media (max-width: 980px) {
   .order {
