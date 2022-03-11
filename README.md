@@ -1,7 +1,7 @@
 # found-market
 
 ## Demo
-http://test.foundmarket.kr
+http://test.foundmarket.kr.s3-website.ap-northeast-2.amazonaws.com
 
 ## Build Setup
 
