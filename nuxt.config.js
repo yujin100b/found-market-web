@@ -24,6 +24,8 @@ export default {
     ],
     script : [ // 다음 주소 검색 API 
       {src: '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js'},
+      {src: 'http://code.jquery.com/jquery-1.11.3.min.js'},
+      { src: 'https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js' },
     ]
   },
 

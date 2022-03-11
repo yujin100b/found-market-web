@@ -10,9 +10,10 @@
         <span>비밀번호 찾기</span>
         <span @click="goToRegist">회원가입</span>
       </div>
-      <button class="naver-btn">네이버로 시작하기</button>
+      <button @click="login_naver" class="naver-btn">네이버로 시작하기</button>
       <button class="google-btn">Google로 시작하기</button>
     </div>
+     <div id="naver_id_login"></div>
     <Footer />
   </div>
 </template>
@@ -34,7 +35,13 @@ export default {
     }
   },
   mounted(){
-    this.$store.commit("localStorage/remove_token")
+    // this.$store.commit("localStorage/remove_token")
+    var _naver_id_login = new naver_id_login("JN32mHN_ITZtyK7hQ_cW", `${window.location.origin}/login_callback`);
+  	var state = _naver_id_login.getUniqState();
+  	_naver_id_login.setButton("white", 2,40);
+  	_naver_id_login.setDomain("http://localhost:3000");
+  	_naver_id_login.setState(state);
+  	_naver_id_login.init_naver_id_login();
   },
   methods:{
     goToRegist() {
@@ -48,6 +55,9 @@ export default {
           }
         }
       )
+    },
+    login_naver(){
+      //document.querySelector('#naver_id_login a').click()
     }
   }
 }
@@ -146,5 +156,9 @@ export default {
   background-image: url('/login-google.png');
   background-repeat: no-repeat;
   background-position: 16px 11px;
+}
+
+#naver_id_login{
+  visibility: hidden;
 }
 </style>
